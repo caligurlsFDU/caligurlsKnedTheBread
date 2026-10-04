@@ -50,7 +50,7 @@ void Menu::displayMenu()
 		}
 		else
 		{
-			cout << "\nInvalid input. Please enter a number from 1 to 3." << endl;
+			cout << "\nSorry, we do not take orders off-menu, Please enter a number from 1 to 3." << endl;
 			cout << "▶ Enter your choice (1-3): ";
 		}
 	}
@@ -64,5 +64,5 @@ void Menu::start()
 
 void Menu::showInstructions()
 {
-	cout << "These are the instructions." << endl;
+	cout << "You are in a restaurant that offers a selection of assorted sandwiches. Buy ingredients, take tricky orders, build the sandwich that matches with the customer preferences, and restock more ingredients to keep the restaurant afloat. Survive as many days as possible until you run out of money. How many days will you survive with these customers?" << endl;
 }
