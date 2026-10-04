@@ -1,1 +1,15 @@
-//placeholder to avoid a blank Repo - Thomas Nichol
+#include "Menu.h"
+#include <iostream>
+#include <windows.h>
+using namespace std;
+
+int main()
+{
+	// Set the console output code page to allow UTF-8 characters used in menu
+	SetConsoleOutputCP(CP_UTF8);
+
+	Menu menu;
+	menu.displayMenu();
+
+	return 0;
+}

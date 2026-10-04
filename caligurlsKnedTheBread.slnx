@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="caligurlsKnedTheBread/caligurlsKnedTheBread.vcxproj" />
+  <Project Path="caligurlsKnedTheBread/caligurlsKnedTheBread.vcxproj" Id="e387a359-55fa-4ca9-a48e-8e510ef0f685" />
 </Solution>
