@@ -1,6 +1,6 @@
 #pragma once
 
-class Menu
+class Game
 {
 public:
 	void startGame();
