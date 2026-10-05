@@ -1,4 +1,5 @@
 #include "menu.h"
+#include "game.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -62,7 +63,9 @@ void Menu::displayMenu()
 //Where player goes when they select start
 void Menu::start()
 {
-	cout << "Starting game..." << endl;
+	Game game; 
+	game.startGame();
+
 }
 
 void Menu::showInstructions()
