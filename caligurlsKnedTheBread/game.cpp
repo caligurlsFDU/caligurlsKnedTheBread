@@ -4,7 +4,7 @@
 
 using namespace std;
 
-
+//ivan
 void Game::startGame()
 {
 	cout << "╔══════════════════════════════════════╗" << endl;
