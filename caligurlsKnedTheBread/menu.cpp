@@ -8,6 +8,7 @@ using namespace std;
 
 void Menu::displayMenu()
 {
+
 	bool running = true;
 	string input;
 
