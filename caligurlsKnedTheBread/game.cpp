@@ -25,9 +25,23 @@ void Game::startGame()
 
 			while (sandwichMade = false)
 			{
-				cout << "Sandwich Ingredient List:\n 1: White Bread.\n 2: Wheat Bread. ";
-				cin >> 
+				failed:
+				cout << "Sandwich Ingredient List:\n 1: White Bread.\n 2: Wheat Bread.\n 3: Ham \n 4: Turkey \n 5: Roast Beef: \n 6: American Cheese \n 7: Swiss Cheese \n 8: Lettuce \n 9: Tomato \n 10: Mayo";
+				cin >> userChoice;
+				if (cin.fail())
+				{
+					cin.clear();
+					cin.ignore(10000, '\n');
+					cout << "Please select an option between 1-10";
+					goto failed;
+				}
+				switch (userChoice)
+				{
+
+				}
 			}
+
+			//Should we move this whole sandwich making section to a new class? it feels like a lot just to be here.
 			
 			sandwichMade = false; //set 
 			customerIndex++;
