@@ -1,5 +1,6 @@
 #include "menu.h"
 #include "game.h"
+#include "customer.h"
 #include <iostream>
 #include <string>
 using namespace std;

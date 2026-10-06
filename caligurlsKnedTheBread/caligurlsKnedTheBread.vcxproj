@@ -145,6 +145,7 @@
     <ClCompile Include="menu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="customer.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="menu.h" />
   </ItemGroup>
