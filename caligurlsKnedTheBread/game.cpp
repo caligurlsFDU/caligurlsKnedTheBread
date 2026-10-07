@@ -35,10 +35,12 @@ void Game::startGame()
 					cout << "Please select an option between 1-10";
 					goto failed;
 				}
-				switch (userChoice)
+				/*switch (userChoice)
 				{
 
+					
 				}
+				*/
 			}
 
 			//Should we move this whole sandwich making section to a new class? it feels like a lot just to be here.
