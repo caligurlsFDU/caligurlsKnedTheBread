@@ -1,9 +1,9 @@
 
 #include "IngredientList.h"
 
-const int NUM_INGREDIENTS = 10;
+const int num_ingredients = 10;
 
-const std::string INGREDIENT_NAMES[NUM_INGREDIENTS + 1] =
+const std::string ingredientNames[num_ingredients + 1] =
 {
     "",                // 0 - unused (0 means "remove" in the menu)
     "White Bread",     // 1
@@ -21,7 +21,7 @@ const std::string INGREDIENT_NAMES[NUM_INGREDIENTS + 1] =
 
 bool IngredientList::isValidIngredient(int number)
 {
-    return number >= 1 && number <= NUM_INGREDIENTS;
+    return number >= 1 && number <= num_ingredients;
 }
 
 std::string IngredientList::getIngredientName(int number)
@@ -30,16 +30,16 @@ std::string IngredientList::getIngredientName(int number)
     {
         return "Unknown";
     }
-    return INGREDIENT_NAMES[number];
+    return ingredientNames[number];
 }
 
 std::string IngredientList::getIngredientListText()
 {
     std::string text;
 
-    for (int i = 1; i <= NUM_INGREDIENTS; i++)
+    for (int i = 1; i <= num_ingredients; i++)
     {
-        text += std::to_string(i) + ". " + INGREDIENT_NAMES[i] + "\n";
+        text += std::to_string(i) + ". " + ingredientNames[i] + "\n";
     }
 
     text += "0. Remove an ingredient\n";
