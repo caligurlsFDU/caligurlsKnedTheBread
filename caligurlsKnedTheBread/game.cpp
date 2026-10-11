@@ -10,6 +10,7 @@ int userChoice;
 
 void Game::startGame()
 {
+	//new comment
 	Customer* orderBook = new Customer[25];
 	orderBook[0].setOrder("I'm feeling like having some pig with Uncle Sam's cheese on that pale stuff. ", {"White Bread", "Ham", "American Cheese"});
 
