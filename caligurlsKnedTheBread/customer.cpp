@@ -5,11 +5,20 @@
 #include "customer.h"
 using namespace std;
 
-string order = "example order";
-
-void Customer::setOrder(string tempOrder)
+Customer::Customer(std::string tempOrder, std::string tempAnswer)
 {
 	order = tempOrder;
+	correctSandwich = tempAnswer;
+}
+
+std::string Customer::getOrder() const
+{
+	return order;
+}
+
+std::string Customer::getCorrectSandwich() const
+{
+	return correctSandwich;
 }
 void Customer::displayOrder()
 {
