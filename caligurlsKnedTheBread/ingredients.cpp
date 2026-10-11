@@ -1,5 +1,5 @@
 
-#include "IngredientList.h"
+#include "ingredients.h"
 
 const int num_ingredients = 10;
 
@@ -7,7 +7,7 @@ const std::string ingredientNames[num_ingredients + 1] =
 {
     "",                // 0 - unused (0 means "remove" in the menu)
     "White Bread",     // 1
-    "Wheat Bread",     // 2
+	"Wheat Bread",     // 2 this is like brown bread, but we can call it wheat bread to make it more clear for the player
     "Ham",             // 3
     "Turkey",          // 4
     "Roast Beef",      // 5
@@ -19,12 +19,12 @@ const std::string ingredientNames[num_ingredients + 1] =
 };
 
 
-bool IngredientList::isValidIngredient(int number)
+bool ingredients::isValidIngredient(int number)
 {
     return number >= 1 && number <= num_ingredients;
 }
 
-std::string IngredientList::getIngredientName(int number)
+std::string ingredients::getIngredientName(int number)
 {
     if (!isValidIngredient(number))
     {
@@ -33,7 +33,7 @@ std::string IngredientList::getIngredientName(int number)
     return ingredientNames[number];
 }
 
-std::string IngredientList::getIngredientListText()
+std::string ingredients::getIngredientListText()
 {
     std::string text;
 

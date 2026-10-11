@@ -1,6 +1,6 @@
 #include "game.h"
 #include "customer.h"
-#include "IngredientList.h"
+#include "ingredients.h"
 #include <iostream>
 using namespace std;
 
@@ -21,13 +21,12 @@ void Game::startGame()
 			cout << "Customer " << customerIndex+1 << "'s order.";
 
 			customerList[customerIndex].displayOrder();
-
 			cout << "\n\n\n";
 
 			while (sandwichMade = false)
 			{
 				failed:
-				cout << IngredientList::getIngredientListText();
+				cout << ingredients::getIngredientListText();
 				cin >> userChoice;
 				if (cin.fail())
 				{
@@ -37,9 +36,9 @@ void Game::startGame()
 					goto failed;
 				}
 
-				if (IngredientList::isValidIngredient(userChoice))
+				if (ingredients::isValidIngredient(userChoice))
 				{
-					cout << "Added " << IngredientList::getIngredientName(userChoice) << ".\n";
+					cout << "Added " << ingredients::getIngredientName(userChoice) << ".\n";
 					// (whatever the group uses to store the sandwich goes here, ig sandwich class would handle this?)
 				}
 				else if (userChoice == 0)
