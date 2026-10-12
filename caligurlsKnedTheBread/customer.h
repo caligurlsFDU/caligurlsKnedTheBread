@@ -4,7 +4,12 @@
 class Customer
 {
 public:
+	Customer(std::string tempOrder, std::string tempAnswer);
+
 	void displayOrder();
-	void setOrder(std::string tempOrder);
+	std::string getOrder() const;
+	std::string getCorrectSandwich() const;
 private:
+    std::string order;
+    std::string correctSandwich;
 };
