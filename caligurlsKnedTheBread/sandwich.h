@@ -13,6 +13,7 @@ public:
     const std::vector<std::string>& get_ingredients() const;
 
 	bool matches_order(const std::vector<std::string>& correctIngredients) const;
+	bool matches_order(const std::string& correctSandwich) const;
     
 private:
     std::vector<std::string> ingredients;

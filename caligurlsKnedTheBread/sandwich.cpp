@@ -1,5 +1,6 @@
 #include "sandwich.h"
 #include <algorithm>
+#include <sstream>
 
 Sandwich::Sandwich() 
 {
@@ -27,24 +28,48 @@ const std::vector<std::string>& Sandwich::get_ingredients() const
 	return ingredients;
 }
 
-bool Sandwich::matches_order(const std::vector<std::string>& correctIngredients) const
+bool Sandwich::matches_order(const std::string& correctSandwich) const
 {
-	if (ingredients.size() != correctIngredients.size())
-	{
-		return false;
-	}
-	for (const std::string& ingredient : ingredients)
-	{
-		auto it = std::find(
-			correctIngredients.begin(),
-			correctIngredients.end(), 
-			ingredient
-		);
+		
+	std::vector<std::string> correctIngredients;
+	std::stringstream ss(correctSandwich);
+	std::string ingredient;
 
-		if (it == correctIngredients.end())
+	while (std::getline(ss, ingredient, ','))
+	{
+		size_t start = ingredient.find_first_not_of(" \t");
+		if (start != std::string::npos)
+		{
+			ingredient.erase(0, start);
+		}
+		size_t end = ingredient.find_last_not_of(" \t");
+		if (end != std::string::npos)
+		{
+			ingredient.erase(end + 1);
+		}
+		correctIngredients.push_back(ingredient);
+	}
+	
+	return matches_order(correctIngredients);
+	}
+
+	bool Sandwich::matches_order(const std::vector<std::string>&correctIngredients) const
+	{
+		if (ingredients.size() != correctIngredients.size())
 		{
 			return false;
 		}
+		for (const std::string& ingredient : ingredients)
+		{
+			auto it = std::find(correctIngredients.begin(),
+				correctIngredients.end(),
+				ingredient);
+				
+
+				if (it == correctIngredients.end())
+				{
+					return false;
+				}
+		}
+		return true;
 	}
-	return true;
-}
