@@ -2,10 +2,10 @@
 #include <string>
 #include <vector>
 
-class sandwich
+class Sandwich
 {
 public:
-    sandwich();
+    Sandwich();
 
     void add_ingredient(const std::string& ingredient);
 	void remove_ingredient(const std::string& ingredient);
