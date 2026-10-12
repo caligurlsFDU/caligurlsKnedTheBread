@@ -141,7 +141,7 @@
   <ItemGroup>
     <ClCompile Include="customer.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="IngredientList.cpp" />
+    <ClCompile Include="ingredients.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="sandwich.cpp" />
@@ -149,7 +149,7 @@
   <ItemGroup>
     <ClInclude Include="customer.h" />
     <ClInclude Include="game.h" />
-    <ClInclude Include="IngredientList.h" />
+    <ClInclude Include="ingredients.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="sandwich.h" />
   </ItemGroup>

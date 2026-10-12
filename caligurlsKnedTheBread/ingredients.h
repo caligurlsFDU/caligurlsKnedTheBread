@@ -1,11 +1,11 @@
 #include<string>
 
-class IngredientList
+class ingredients
 {
-/// @class IngredientList
+/// @class ingredients
 /// @brief Defines the 10 ingredients the player can pick from
 /// Stateless class, all methods are static, no constructor (avoid that issue faced in C++ Nim workshop!)
-///   (call directly - e.g. IngredientList::getIngredientName(3))
+///   (call directly - e.g. ingredients::getIngredientName(3))
 /// Methods:
 ///  -string getIngredientName(int) - returns the name for numbers 1-10
 ///  -bool isValidIngredient(int) - true if 1-10
