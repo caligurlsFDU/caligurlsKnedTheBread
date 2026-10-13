@@ -2,25 +2,44 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "customer.h"
 using namespace std;
 
-Customer::Customer(std::string tempOrder, std::string tempAnswer)
+string orderPrompt = "example order";
+vector<string> customerOrder;
+
+Customer::Customer()
 {
-	order = tempOrder;
-	correctSandwich = tempAnswer;
+	orderPrompt = "blank";
+	vector<string> customerOrder = { "example", "order" };
 }
 
-std::string Customer::getOrder() const
+Customer::Customer(string prompt, vector<string> ingredients)
 {
-	return order;
+	orderPrompt = prompt;
+	customerOrder = ingredients;
 }
 
-std::string Customer::getCorrectSandwich() const
+void Customer::setOrder(string tempOrder, vector<string> ingredients)
 {
-	return correctSandwich;
+	orderPrompt = tempOrder;
+	customerOrder = ingredients;
 }
 void Customer::displayOrder()
 {
-	cout << "\n\n\nThe customer's order is:\n " << order << "\n\n\n";
+	cout << "\n\n\nThe customer's order is:\n " << orderPrompt << "\n\n\n";
+}
+
+bool Customer::checkOrder(vector<string> orderToCheck)
+{
+	if (orderToCheck == customerOrder)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	return true;
 }
