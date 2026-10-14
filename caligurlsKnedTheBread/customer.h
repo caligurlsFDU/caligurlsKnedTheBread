@@ -1,15 +1,20 @@
 #pragma once
-#include  <string>
+#include <string>
+#include <vector>
 
 class Customer
 {
 public:
-	Customer(std::string tempOrder, std::string tempAnswer);
 
+	Customer();
+	Customer(std::string tempOrder, std::vector<std::string> ingredients);
+	void setOrder(std::string tempOrder, std::vector<std::string> ingredients);
 	void displayOrder();
 	std::string getOrder() const;
-	std::string getCorrectSandwich() const;
+	std::vector<std::string> getCorrectSandwich() const;
+	bool checkOrder(std::vector<std::string> orderToCheck) const;
+
 private:
-    std::string order;
-    std::string correctSandwich;
+	std::string orderPrompt;
+	std::vector<std::string> correctSandwich;
 };
