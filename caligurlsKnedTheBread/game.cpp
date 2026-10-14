@@ -1,7 +1,7 @@
 #include "game.h"
 #include "customer.h"
 #include "ingredients.h"
-#include <sandwich.h>
+#include "sandwich.h"
 #include <iostream>
 using namespace std;
 
@@ -60,18 +60,18 @@ void Game::startGame()
 	{
 		cout << "Customer " << customerIndex + 1 << "'s order.";
 
-		customerList[customerIndex].displayOrder();
+		orderBook[customerIndex].displayOrder();
 		cout << "\n\n\n";
 
 		Sandwich playerSandwich; //create a new sandwich for the player to make
-		sadwichMade = false; //reset the sandwichMade variable for the new customer
+		sandwichMade = false; //reset the sandwichMade variable for the new customer
 
 		while (sandwichMade == false)
 		{
 			cout << ingredients::getIngredientListText();
-			cout << 11. Finish sandwich\n";
+			cout << "11. Finish sandwich\n";
 
-				cout << "Choose an option: ";
+			cout << "Choose an option: ";
 			cin >> userChoice;
 			if (cin.fail())
 			{
@@ -85,13 +85,13 @@ void Game::startGame()
 			{
 				string ingredientName = ingredients::getIngredientName(userChoice);
 
-				playerSandwich.addIngredient(ingredientName);
+				playerSandwich.add_ingredient(ingredientName);
 
 				cout << "Added " << ingredientName << ".\n";
 			}
 			else if (userChoice == 0)
 			{
-				const vector<string>& currentIngredients = playerSandwich.getIngredients();
+				const vector<string>& currentIngredients = playerSandwich.get_ingredients();
 
 				if (currentIngredients.empty())
 				{
@@ -121,7 +121,7 @@ void Game::startGame()
 				if (ingredients::isValidIngredient(removeChoice))
 				{
 					string ingredientName = ingredients::getIngredientName(removeChoice);
-					playerSandwich.removeIngredient(ingredientName);
+					playerSandwich.remove_ingredient(ingredientName);
 					cout << "Removed " << ingredientName << ".\n";
 				}
 				else
@@ -138,7 +138,7 @@ void Game::startGame()
 				cout << "Please select an option between 1 and 11.\n";
 			}
 		}
-		if (playerSandwich.matchesOrder(orderBook[customerIndex].getCorrectSandwich()))
+		if (playerSandwich.matches_order(orderBook[customerIndex].getCorrectSandwich()))
 		{
 			cout << "Congratulations! You made the correct sandwich!\n";
 		}
@@ -155,3 +155,4 @@ void Game::startGame()
 
 		delete[] orderBook; // Free the dynamically allocated memory
 	}
+}
