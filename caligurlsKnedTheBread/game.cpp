@@ -126,7 +126,7 @@ void Game::startGame()
 				}
 				else
 				{
-					cout << "Please select an ingredient between 1 and " << ingredients::getIngredientCount() << ".\n";
+					cout << "Please select an ingredient between 1 and 10\n";
 				}
 			}
 			else if (userChoice == 11)
