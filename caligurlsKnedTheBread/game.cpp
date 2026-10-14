@@ -1,6 +1,7 @@
 #include "game.h"
 #include "customer.h"
 #include "ingredients.h"
+#include <sandwich.h>
 #include <iostream>
 using namespace std;
 
@@ -13,7 +14,7 @@ void Game::startGame()
 {
 	//new comment
 	Customer* orderBook = new Customer[25];
-	orderBook[0].setOrder("I'm feeling like having some pig with Uncle Sam's cheese on that pale stuff. ", { "White Bread", "Ham", "American Cheese"});
+	orderBook[0].setOrder("I'm feeling like having some pig with Uncle Sam's cheese on that pale stuff. ", { "White Bread", "Ham", "American Cheese" });
 
 	orderBook[1].setOrder("Gobble-gobble bird and the cheese full of holes, on the brown grainy slices, please. ", { "Wheat Bread", "Turkey", "Swiss Cheese" });
 
@@ -23,7 +24,7 @@ void Game::startGame()
 
 	orderBook[4].setOrder("Thanksgiving bird with rabbit food and the red fruit everyone calls a vegetable, on the plain pasty slices. ", { "White Bread", "Turkey", "Lettuce", "Tomato" });
 
-	orderBook[5].setOrder("Moo meat, the orange square that melts, and something leafy and green on the grainy brown slices. ", {"Wheat Bread", "Roast Beef", "American Cheese", "Lettuce"});
+	orderBook[5].setOrder("Moo meat, the orange square that melts, and something leafy and green on the grainy brown slices. ", { "Wheat Bread", "Roast Beef", "American Cheese", "Lettuce" });
 
 	orderBook[6].setOrder("Pig AND Thanksgiving bird, both, on that pale stuff. No cheese, no veggies, no spread. ", { "White Bread", "Ham", "Turkey" });
 
@@ -41,7 +42,7 @@ void Game::startGame()
 
 	orderBook[13].setOrder("Moo-cow meat, the holey cheese, and the red seedy slices on the brown grainy kind. ", { "Wheat Bread", "Roast Beef", "Swiss Cheese", "Tomato" });
 	orderBook[14].setOrder("The Thanksgiving bird, holey cheese, rabbit food, and the creamy eggy spread on the plain pasty slices.", { "White Bread", "Turkey", "Swiss Cheese", "Lettuce", "Mayo" });
-	orderBook[15].setOrder("I'm feeling like having some pig with Uncle Sam's cheese on that pale stuff. ", { "White Bread", "Ham", "American Cheese"});
+	orderBook[15].setOrder("I'm feeling like having some pig with Uncle Sam's cheese on that pale stuff. ", { "White Bread", "Ham", "American Cheese" });
 	orderBook[16].setOrder("Pig, bird, AND cow all stacked together on brown grainy slices. Skip the cheese, veggies, and spread.", { "Wheat Bread", "Ham", "Turkey", "Roast Beef" });
 	orderBook[17].setOrder("Two cheeses: the orange square from Uncle Sam and the holey one from the Alps. Pale slices, nothing else.", { "White Bread", "American Cheese", "Swiss Cheese" });
 	orderBook[18].setOrder("Some pig with the red-white-and-blue cheese on the healthy-looking brown slices.", { "Wheat Bread", "Ham", "American Cheese" });
@@ -54,57 +55,103 @@ void Game::startGame()
 
 
 
-	while (gamePlaying)
+
+	while (gamePlaying && customerIndex < 25)
 	{
-		while (customerIndex < 5)
+		cout << "Customer " << customerIndex + 1 << "'s order.";
+
+		customerList[customerIndex].displayOrder();
+		cout << "\n\n\n";
+
+		Sandwich playerSandwich; //create a new sandwich for the player to make
+		sadwichMade = false; //reset the sandwichMade variable for the new customer
+
+		while (sandwichMade == false)
 		{
-			cout << "Customer " << customerIndex+1 << "'s order.";
+			cout << ingredients::getIngredientListText();
+			cout << 11. Finish sandwich\n";
 
-			orderBook[customerIndex].displayOrder();
-			cout << "\n\n\n";
-
-			while (sandwichMade = false)
+				cout << "Choose an option: ";
+			cin >> userChoice;
+			if (cin.fail())
 			{
-				failed:
-				cout << ingredients::getIngredientListText();
-				cin >> userChoice;
+				cin.clear();
+				cin.ignore(10000, '\n');
+				cout << "Please select a valid option.\n";
+				continue;
+			}
+
+			if (ingredients::isValidIngredient(userChoice))
+			{
+				string ingredientName = ingredients::getIngredientName(userChoice);
+
+				playerSandwich.addIngredient(ingredientName);
+
+				cout << "Added " << ingredientName << ".\n";
+			}
+			else if (userChoice == 0)
+			{
+				const vector<string>& currentIngredients = playerSandwich.getIngredients();
+
+				if (currentIngredients.empty())
+				{
+					cout << "Your sandwich is empty.\n";
+					continue;
+				}
+
+				cout << "Current sandwich ingredients:\n";
+
+				for (const string& ingredient : currentIngredients)
+				{
+					cout << "- " << ingredient << "\n";
+				}
+
+				cout << "Enter the ingredient number to remove: ";
+
+				int removeChoice;
+				cin >> removeChoice;
+
 				if (cin.fail())
 				{
 					cin.clear();
 					cin.ignore(10000, '\n');
-					cout << "Please select an option between 1-10";
-					goto failed;
+					cout << "Please select a valid number.\n";
+					continue;
 				}
-
-				if (ingredients::isValidIngredient(userChoice))
+				if (ingredients::isValidIngredient(removeChoice))
 				{
-					cout << "Added " << ingredients::getIngredientName(userChoice) << ".\n";
-					// (whatever the group uses to store the sandwich goes here, ig sandwich class would handle this?)
-				}
-				else if (userChoice == 0)
-				{
-					// remove an ingredient
+					string ingredientName = ingredients::getIngredientName(removeChoice);
+					playerSandwich.removeIngredient(ingredientName);
+					cout << "Removed " << ingredientName << ".\n";
 				}
 				else
 				{
-					cout << "Please select an option between 0-10\n";
+					cout << "Please select an ingredient between 1 and " << ingredients::getIngredientCount() << ".\n";
 				}
-
-				 switch (userChoice)
-				{
-
-					
-				}
-				
 			}
-
-			//Should we move this whole sandwich making section to a new class? it feels like a lot just to be here.
-			
-			sandwichMade = false; //set 
-			customerIndex++;
+			else if (userChoice == 11)
+			{
+				sandwichMade = true;
+			}
+			else
+			{
+				cout << "Please select an option between 1 and 11.\n";
+			}
 		}
-		
-	}
+		if (playerSandwich.matchesOrder(orderBook[customerIndex].getCorrectSandwich()))
+		{
+			cout << "Congratulations! You made the correct sandwich!\n";
+		}
+		else
+		{
+			cout << "Sorry, that's not the correct sandwich. The correct ingredients were:\n";
+			for (const string& ingredient : orderBook[customerIndex].getCorrectSandwich())
+			{
+				cout << "- " << ingredient << "\n";
+			}
+			customerIndex++; // Increment customerIndex to move to the next customer
+		}
+		cout << "\nAll customers served.";
 
-	
-}
+		delete[] orderBook; // Free the dynamically allocated memory
+	}
