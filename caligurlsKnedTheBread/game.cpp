@@ -53,8 +53,6 @@ void Game::startGame()
 	orderBook[24].setOrder("Pig and gobbler together, the holey cheese, leaves, red seedy slices, and the creamy eggy spread on pale slices. Hold the cow and the orange cheese. ", { "White Bread", "Ham", "Turkey", "Swiss Cheese", "Lettuce", "Tomato", "Mayo" });
 
 
-	/*
-
 
 	while (gamePlaying)
 	{
@@ -62,7 +60,7 @@ void Game::startGame()
 		{
 			cout << "Customer " << customerIndex+1 << "'s order.";
 
-			customerList[customerIndex].displayOrder();
+			orderBook[customerIndex].displayOrder();
 			cout << "\n\n\n";
 
 			while (sandwichMade = false)
@@ -92,12 +90,12 @@ void Game::startGame()
 					cout << "Please select an option between 0-10\n";
 				}
 
-				/*switch (userChoice)
+				 switch (userChoice)
 				{
 
 					
 				}
-				*/
+				
 			}
 
 			//Should we move this whole sandwich making section to a new class? it feels like a lot just to be here.

@@ -16,5 +16,5 @@ public:
 
 private:
 	std::string orderPrompt;
-	std::vector<std::string> correctSandwich;
+	std::vector<std::string> customerOrder;
 };
