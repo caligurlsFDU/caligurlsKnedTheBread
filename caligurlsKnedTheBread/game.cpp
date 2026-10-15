@@ -124,6 +124,17 @@ void Game::startGame()
 					continue;
 				}
 
+				cin >> ws;
+
+				if (cin.peek() != '\n') // Check if there are extra characters in the input buffer
+				{
+					cin.ignore(10000, '\n');
+					cout << "Please enter 1 number at a time.\n";
+					continue;
+				}
+
+				cin.ignore(10000, '\n');
+
 				if (removeChoice >= 1 && removeChoice <= currentIngredients.size())
 				{
 					string ingredientName = currentIngredients[removeChoice - 1];
