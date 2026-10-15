@@ -3,6 +3,8 @@
 #include "ingredients.h"
 #include "sandwich.h"
 #include <iostream>
+#include <string>
+#include <sstream>
 using namespace std;
 
 bool gamePlaying = true;
@@ -80,6 +82,23 @@ void Game::startGame()
 				continue;
 			}
 
+			if (cin.peek() != '\n') // Check if there are extra characters in the input buffer
+			{
+				cin.ignore(10000, '\n');
+				cout << "Please enter 1 number at a time.\n";
+				continue;
+			}
+
+			char extra;
+			cin.get(extra);
+
+			if (extra != '\n') // Check if there are extra characters in the input buffer
+			{
+				cout << "Please enter 1 number at a time.\n";
+				cin.ignore(10000, '\n');
+				continue;
+			})
+
 			if (ingredients::isValidIngredient(userChoice))
 			{
 				string ingredientName = ingredients::getIngredientName(userChoice);
@@ -120,8 +139,18 @@ void Game::startGame()
 				if (ingredients::isValidIngredient(removeChoice))
 				{
 					string ingredientName = ingredients::getIngredientName(removeChoice);
+					size_t previousSize = playerSandwich.get_ingredients().size();
 					playerSandwich.remove_ingredient(ingredientName);
-					cout << "Removed " << ingredientName << ".\n";
+					size_t currentSize = playerSandwich.get_ingredients().size();
+					
+					if (currentSize < previousSize)
+					{
+						cout << "Removed " << ingredientName << ".\n";
+					}
+					else
+					{
+						cout << ingredientName << " is not in your sandwich.\n";
+					}
 				}
 				else
 				{
