@@ -61,16 +61,15 @@ void Game::startGame()
 		cout << "Customer " << customerIndex + 1 << "'s order.";
 
 		orderBook[customerIndex].displayOrder();
-		cout << "\n\n\n";
 
 		Sandwich playerSandwich; //create a new sandwich for the player to make
 		sandwichMade = false; //reset the sandwichMade variable for the new customer
 
+		cout << ingredients::getIngredientListText();
+		cout << "11. Finish sandwich\n";
+
 		while (sandwichMade == false)
 		{
-			cout << ingredients::getIngredientListText();
-			cout << "11. Finish sandwich\n";
-
 			cout << "Choose an option: ";
 			cin >> userChoice;
 			if (cin.fail())
@@ -140,19 +139,17 @@ void Game::startGame()
 		}
 		if (playerSandwich.matches_order(orderBook[customerIndex].getCorrectSandwich()))
 		{
-			cout << "Congratulations! You made the correct sandwich!\n";
+			cout << "\nCongratulations! You made the correct sandwich!\n\n";
+			customerIndex++;
 		}
 		else
 		{
-			cout << "Sorry, that's not the correct sandwich. The correct ingredients were:\n";
+			cout << "\nSorry, that's not the correct sandwich. The correct ingredients were:\n\n";
 			for (const string& ingredient : orderBook[customerIndex].getCorrectSandwich())
 			{
 				cout << "- " << ingredient << "\n";
 			}
 			customerIndex++; // Increment customerIndex to move to the next customer
 		}
-		cout << "\nAll customers served.";
-
-		delete[] orderBook; // Free the dynamically allocated memory
 	}
 }
