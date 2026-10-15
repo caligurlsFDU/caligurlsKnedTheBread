@@ -84,7 +84,7 @@ void Game::startGame()
 				cout << "Please enter 1 number at a time.\n";
 				cin.ignore(10000, '\n');
 				continue;
-			})
+			}
 
 			if (ingredients::isValidIngredient(userChoice))
 			{
