@@ -17,31 +17,18 @@ void Game::startGame()
 	//new comment
 	Customer* orderBook = new Customer[25];
 	orderBook[0].setOrder("I'm feeling like having some pig with Uncle Sam's cheese on that pale stuff. ", { "White Bread", "Ham", "American Cheese" });
-
 	orderBook[1].setOrder("Gobble-gobble bird and the cheese full of holes, on the brown grainy slices, please. ", { "Wheat Bread", "Turkey", "Swiss Cheese" });
-
 	orderBook[2].setOrder("Give me the cow, cooked low and slow, under the holey cheese from the Alps, on ghost-colored slices. ", { "White Bread", "Roast Beef", "Swiss Cheese" });
-
 	orderBook[3].setOrder("Oink-oink meat, the cheese with holes, and that creamy eggy spread, all on the healthy-looking brown slices. ", { "Wheat Bread", "Ham", "Swiss Cheese", "Mayo" });
-
 	orderBook[4].setOrder("Thanksgiving bird with rabbit food and the red fruit everyone calls a vegetable, on the plain pasty slices. ", { "White Bread", "Turkey", "Lettuce", "Tomato" });
-
 	orderBook[5].setOrder("Moo meat, the orange square that melts, and something leafy and green on the grainy brown slices. ", { "Wheat Bread", "Roast Beef", "American Cheese", "Lettuce" });
-
 	orderBook[6].setOrder("Pig AND Thanksgiving bird, both, on that pale stuff. No cheese, no veggies, no spread. ", { "White Bread", "Ham", "Turkey" });
-
 	orderBook[7].setOrder("Pink pork, crunchy leaves, red juicy slices, and the creamy eggy spread on the brown grainy kind. ", { "Wheat Bread", "Ham", "Lettuce", "Tomato", "Mayo" });
-
 	orderBook[8].setOrder("Just Uncle Sam's melty orange square on the pale slices. Nothing else, I'm keeping it simple. ", { "White Bread", "American Cheese" });
-
 	orderBook[9].setOrder("No meat, no cheese. I just want leaves and the red seedy slices on the brown grainy kind. ", { "Wheat Bread", "Lettuce", "Tomato" });
-
 	orderBook[10].setOrder("The cow, cooked low and slow, with that creamy eggy spread on ghost-colored slices. ", { "White Bread", "Roast Beef", "Mayo" });
-
 	orderBook[11].setOrder("Gobbler meat, the stars-and-stripes slice, and creamy eggy spread on the healthy brown slices.  ", { "Wheat Bread", "Turkey", "American Cheese", "Mayo" });
-
 	orderBook[12].setOrder("Oink-oink, the Alpine cheese with holes, and red seedy slices, all on the pale stuff. ", { "White Bread", "Ham", "Swiss Cheese", "Tomato" });
-
 	orderBook[13].setOrder("Moo-cow meat, the holey cheese, and the red seedy slices on the brown grainy kind. ", { "Wheat Bread", "Roast Beef", "Swiss Cheese", "Tomato" });
 	orderBook[14].setOrder("The Thanksgiving bird, holey cheese, rabbit food, and the creamy eggy spread on the plain pasty slices.", { "White Bread", "Turkey", "Swiss Cheese", "Lettuce", "Mayo" });
 	orderBook[15].setOrder("I'm feeling like having some pig with Uncle Sam's cheese on that pale stuff. ", { "White Bread", "Ham", "American Cheese" });
