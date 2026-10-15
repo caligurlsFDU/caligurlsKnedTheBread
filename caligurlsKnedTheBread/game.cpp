@@ -106,9 +106,9 @@ void Game::startGame()
 
 				cout << "Current sandwich ingredients:\n";
 
-				for (const string& ingredient : currentIngredients)
+				for (int i = 0; i < currentIngredients.size(); i++)
 				{
-					cout << "- " << ingredient << "\n";
+					cout << i + 1 << ". " << currentIngredients[i] << "\n";
 				}
 
 				cout << "Enter the ingredient number to remove: ";
@@ -123,25 +123,16 @@ void Game::startGame()
 					cout << "Please select a valid number.\n";
 					continue;
 				}
-				if (ingredients::isValidIngredient(removeChoice))
+
+				if (removeChoice >= 1 && removeChoice <= currentIngredients.size())
 				{
-					string ingredientName = ingredients::getIngredientName(removeChoice);
-					size_t previousSize = playerSandwich.get_ingredients().size();
+					string ingredientName = currentIngredients[removeChoice - 1];
 					playerSandwich.remove_ingredient(ingredientName);
-					size_t currentSize = playerSandwich.get_ingredients().size();
-					
-					if (currentSize < previousSize)
-					{
-						cout << "Removed " << ingredientName << ".\n";
-					}
-					else
-					{
-						cout << ingredientName << " is not in your sandwich.\n";
-					}
+					cout << "Removed " << ingredientName << ".\n";
 				}
 				else
 				{
-					cout << "Please select an ingredient between 1 and 10\n";
+					cout << "Choose the ingredient number to remove.\n";
 				}
 			}
 			else if (userChoice == 11)
