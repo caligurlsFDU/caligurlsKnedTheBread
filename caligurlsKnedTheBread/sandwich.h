@@ -7,13 +7,13 @@ class Sandwich
 public:
     Sandwich();
 
-    void add_ingredient(const std::string& ingredient);
-	void remove_ingredient(const std::string& ingredient);
+    void addIngredient(const std::string& ingredient);
+	void removeIngredient(const std::string& ingredient);
 
-    const std::vector<std::string>& get_ingredients() const;
+    const std::vector<std::string>& getIngredients() const;
 
-	bool matches_order(const std::vector<std::string>& correctIngredients) const;
-	bool matches_order(const std::string& correctSandwich) const;
+	bool matchesOrder(const std::vector<std::string>& correctIngredients) const;
+	bool matchesOrder(const std::string& correctSandwich) const;
     
 private:
     std::vector<std::string> ingredients;

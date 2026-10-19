@@ -50,10 +50,10 @@ bool Sandwich::matchesOrder(const std::string& correctSandwich) const
 		correctIngredients.push_back(ingredient);
 	}
 	
-	return matches_order(correctIngredients);
+	return matchesOrder(correctIngredients);
 	}
 
-	bool Sandwich::matches_order(const std::vector<std::string>&correctIngredients) const
+	bool Sandwich::matchesOrder(const std::vector<std::string>&correctIngredients) const
 	{
 		if (ingredients.size() != correctIngredients.size())
 		{

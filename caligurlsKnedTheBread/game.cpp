@@ -66,7 +66,7 @@ int customerIndex = 0;
 
 				cout << "Current sandwich ingredients:\n";
 
-				for (int i = 0; i < static_cast<int>(currentIngredients.size());
+				for (int i = 0; i < static_cast<int>(currentIngredients.size()); i++)
 				{
 					cout << i + 1 << ". " << currentIngredients[i] << "\n";
 				}
