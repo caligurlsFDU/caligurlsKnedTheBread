@@ -6,29 +6,29 @@ Sandwich::Sandwich()
 {
 }
 
-void Sandwich::add_ingredient(const std::string& ingredient)
+void Sandwich::addIngredient(const std::string& ingredient)
 {
-	auto it = std::find(ingredients.begin(), ingredients.end(), ingredient);
-	if (it == ingredients.end())
+	auto ingredientIterator = std::find(ingredients.begin(), ingredients.end(), ingredient);
+	if (ingredientIterator == ingredients.end())
 	{
 		ingredients.push_back(ingredient);
 	}
 }
-void Sandwich::remove_ingredient(const std::string& ingredient)
+void Sandwich::removeIngredient(const std::string& ingredient)
 {
-	auto it = std::find(ingredients.begin(), ingredients.end(), ingredient);
-	if (it != ingredients.end())
+	auto ingredientIterator = std::find(ingredients.begin(), ingredients.end(), ingredient);
+	if (ingredientIterator != ingredients.end())
 	{
-		ingredients.erase(it);
+		ingredients.erase(ingredientIterator);
 	}
 }
 
-const std::vector<std::string>& Sandwich::get_ingredients() const
+const std::vector<std::string>& Sandwich::getIngredients() const
 {
 	return ingredients;
 }
 
-bool Sandwich::matches_order(const std::string& correctSandwich) const
+bool Sandwich::matchesOrder(const std::string& correctSandwich) const
 {
 		
 	std::vector<std::string> correctIngredients;

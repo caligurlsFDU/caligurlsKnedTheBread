@@ -65,26 +65,10 @@ void Game::startGame()
 			{
 				cin.clear();
 				cin.ignore(10000, '\n');
-				cout << "Please select a valid option.\n";
+				cout << "Please select a valid number.\n";
 				continue;
 			}
-
-			if (cin.peek() != '\n') // Check if there are extra characters in the input buffer
-			{
-				cin.ignore(10000, '\n');
-				cout << "Please enter 1 number at a time.\n";
-				continue;
-			}
-
-			char extra;
-			cin.get(extra);
-
-			if (extra != '\n') // Check if there are extra characters in the input buffer
-			{
-				cout << "Please enter 1 number at a time.\n";
-				cin.ignore(10000, '\n');
-				continue;
-			}
+			cin.ignore(10000, '\n');
 
 			if (ingredients::isValidIngredient(userChoice))
 			{
@@ -96,7 +80,7 @@ void Game::startGame()
 			}
 			else if (userChoice == 0)
 			{
-				const vector<string>& currentIngredients = playerSandwich.get_ingredients();
+				const vector<string>& currentIngredients = playerSandwich.getIngredients();
 
 				if (currentIngredients.empty())
 				{
@@ -111,9 +95,9 @@ void Game::startGame()
 					cout << i + 1 << ". " << currentIngredients[i] << "\n";
 				}
 
-				cout << "Enter the ingredient number to remove: ";
-
 				int removeChoice;
+
+				cout << "Enter the ingredient number to remove: ";
 				cin >> removeChoice;
 
 				if (cin.fail())
@@ -124,37 +108,19 @@ void Game::startGame()
 					continue;
 				}
 
-				cin >> ws;
-
-				if (cin.peek() != '\n') // Check if there are extra characters in the input buffer
-				{
-					cin.ignore(10000, '\n');
-					cout << "Please enter 1 number at a time.\n";
-					continue;
-				}
-
 				cin.ignore(10000, '\n');
 
 				if (removeChoice >= 1 && removeChoice <= currentIngredients.size())
 				{
 					string ingredientName = currentIngredients[removeChoice - 1];
-					playerSandwich.remove_ingredient(ingredientName);
+					playerSandwich.removeIngredient(ingredientName);
 					cout << "Removed " << ingredientName << ".\n";
 				}
 				else
 				{
-					cout << "Choose the ingredient number to remove.\n";
+					cout << "Choose a valid ingredient number to remove.\n";
 				}
 			}
-			else if (userChoice == 11)
-			{
-				sandwichMade = true;
-			}
-			else
-			{
-				cout << "Please select an option between 1 and 11.\n";
-			}
-		}
 		if (playerSandwich.matches_order(orderBook[customerIndex].getCorrectSandwich()))
 		{
 			cout << "\nCongratulations! You made the correct sandwich!\n\n";
