@@ -16,27 +16,27 @@ void Game::startGame()
 {
 	vector<Customer> orderBook = Customer::createCustomers();
 
-bool gamePlaying = true;
 int customerIndex = 0;
-bool sandwichMade = false;
-int userChoice;
 
-	while (gamePlaying && customerIndex < orderBook.size())
+	while (customerIndex < orderBook.size())
 	{
 		cout << "Customer " << customerIndex + 1 << "'s order.";
 
 		orderBook[customerIndex].displayOrder();
 
 		Sandwich playerSandwich; //create a new sandwich for the player to make
-		sandwichMade = false; //reset the sandwichMade variable for the new customer
 
 		cout << ingredients::getIngredientListText();
 		cout << finishSandwichOption << ". Finish sandwich\n";
 
+		bool sandwichMade = false;
+
 		while (sandwichMade == false)
 		{
+			int userChoice;
 			cout << "Choose an option: ";
 			cin >> userChoice;
+
 			if (cin.fail())
 			{
 				cin.clear();
@@ -44,7 +44,7 @@ int userChoice;
 				cout << "Please select a valid number.\n";
 				continue;
 			}
-			cin.ignore(10000, '\n');
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 			if (ingredients::isValidIngredient(userChoice))
 			{
@@ -66,7 +66,7 @@ int userChoice;
 
 				cout << "Current sandwich ingredients:\n";
 
-				for (int i = 0; i < currentIngredients.size(); i++)
+				for (int i = 0; i < static_cast<int>(currentIngredients.size());
 				{
 					cout << i + 1 << ". " << currentIngredients[i] << "\n";
 				}
@@ -84,9 +84,9 @@ int userChoice;
 					continue;
 				}
 
-				cin.ignore(10000, '\n');
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-				if (removeChoice >= 1 && removeChoice <= currentIngredients.size())
+				if (removeChoice >= 1 && removeChoice <= static_cast<int>(currentIngredients.size()))
 				{
 					string ingredientName = currentIngredients[removeChoice - 1];
 					playerSandwich.removeIngredient(ingredientName);
@@ -97,19 +97,28 @@ int userChoice;
 					cout << "Choose a valid ingredient number to remove.\n";
 				}
 			}
-		if (playerSandwich.matches_order(orderBook[customerIndex].getCorrectSandwich()))
+			else if (userChoice == finishSandwichOption)
+			{
+				sandwichMade = true;
+			}
+			else
+			{
+				cout << "Please select a valid option.\n";
+			}
+		}
+		if (playerSandwich.matchesOrder(orderBook[customerIndex].getCorrectSandwich()))
 		{
 			cout << "\nCongratulations! You made the correct sandwich!\n\n";
-			customerIndex++;
 		}
 		else
 		{
 			cout << "\nSorry, that's not the correct sandwich. The correct ingredients were:\n\n";
+
 			for (const string& ingredient : orderBook[customerIndex].getCorrectSandwich())
 			{
 				cout << "- " << ingredient << "\n";
 			}
-			customerIndex++; // Increment customerIndex to move to the next customer
 		}
+			customerIndex++; // Increment customerIndex to move to the next customer
 	}
 }
