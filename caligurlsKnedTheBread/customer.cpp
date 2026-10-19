@@ -130,6 +130,7 @@ vector<Customer> Customer::createCustomers()
 	//orderBook[23].setOrder("Cow cooked low and slow, Uncle Sam's melty orange square, and red seedy slices on the pale stuff.", { "White Bread", "Roast Beef", "American Cheese", "Tomato" });
 	//orderBook[24].setOrder("Pig and gobbler together, the holey cheese, leaves, red seedy slices, and the creamy eggy spread on pale slices. Hold the cow and the orange cheese. ", { "White Bread", "Ham", "Turkey", "Swiss Cheese", "Lettuce", "Tomato", "Mayo" });
 
+	return customers;
 }
 
 
