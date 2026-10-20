@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 #include <limits>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -16,7 +18,7 @@ void Game::startGame()
 {
 	vector<Customer> orderBook = Customer::createCustomers();
 
-int customerIndex = 0;
+	int customerIndex = 0;
 
 	while (customerIndex < orderBook.size())
 	{
@@ -80,19 +82,18 @@ int customerIndex = 0;
 				}
 
 				int removeChoice;
+				string input;
 
 				cout << "Enter the ingredient number to remove: ";
-				cin >> removeChoice;
+				getline(cin, input);
+				stringstream inputStream(input);
+				char extra;
 
-				if (cin.fail())
+				if (!(inputStream >> removeChoice) || (inputStream >> extra))
 				{
-					cin.clear();
-					cin.ignore(10000, '\n');
-					cout << "Please select a valid number.\n";
+					cout << "Please enter one number at a time.\n";
 					continue;
 				}
-
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 				if (removeChoice >= 1 && removeChoice <= static_cast<int>(currentIngredients.size()))
 				{
@@ -127,6 +128,6 @@ int customerIndex = 0;
 				cout << "- " << ingredient << "\n";
 			}
 		}
-			customerIndex++; // Increment customerIndex to move to the next customer
+		customerIndex++; // Increment customerIndex to move to the next customer
 	}
 }
