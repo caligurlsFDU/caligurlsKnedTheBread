@@ -57,10 +57,10 @@ bool Shift::serveCustomer(int rating)
 }
 bool Shift::isShiftOver() const
 {
-	return getCustomerLeft() == 0;
+	return getCustomersLeft() == 0;
 }
 std::string Shift::getStatusText() const
 {
-	return "Shift " + std::toString(shiftNumber)
-		+ " | Customers left: " + std::toString(getCustomersLeft())
+	return "Shift " + std::to_string(shiftNumber)
+		+ " | Customers left: " + std::to_string(getCustomersLeft())
 }

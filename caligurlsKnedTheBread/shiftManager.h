@@ -1,5 +1,5 @@
 #pragma once
-#ifdef shiftManagerH
+#ifndef shiftManagerH
 #define shiftManagerH
 #include "shift.h"
 #include "shiftScreens.h"
@@ -12,7 +12,7 @@ public:
 	void showShop();
 	int readChoice();
 private:
-	shift currentShift;
+	Shift currentShift;
 	shiftScreens screens;
 };
 
