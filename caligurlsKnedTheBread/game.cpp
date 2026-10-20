@@ -50,9 +50,17 @@ int customerIndex = 0;
 			{
 				string ingredientName = ingredients::getIngredientName(userChoice);
 
-				playerSandwich.addIngredient(ingredientName);
+				const vector<string>& currentIngredients = playerSandwich.getIngredients();
 
-				cout << "Added " << ingredientName << ".\n";
+				if (find(currentIngredients.begin(), currentIngredients.end(), ingredientName) != currentIngredients.end())
+				{
+					cout << "You already added " << ingredientName << ".\n";
+				}
+				else
+				{
+					playerSandwich.addIngredient(ingredientName);
+					cout << "Added " << ingredientName << ".\n";
+				}
 			}
 			else if (userChoice == removeIngredientOption)
 			{
