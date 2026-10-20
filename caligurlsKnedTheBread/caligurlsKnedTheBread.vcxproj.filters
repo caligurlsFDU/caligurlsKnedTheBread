@@ -30,6 +30,18 @@
     <ClCompile Include="ingredients.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sandwich.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shift.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shiftScreens.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shiftManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menu.h">
@@ -42,6 +54,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ingredients.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sandwich.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shift.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shiftScreens.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shiftManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
