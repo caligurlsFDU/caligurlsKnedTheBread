@@ -8,7 +8,7 @@ std::string shiftScreens::getShiftOverText(int shift, int rating)
 		+ "\nTotal Rating: " + std::to_string(rating) + "\n";
 }
 
-std::nullptr_t ShiftScreens::getShiftEndOptionsText()
+std::string shiftScreens::getShiftEndOptionsText()
 {
 	return "1. Continue to next shift\n"
 		"2. Go to shop\n"

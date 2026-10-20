@@ -20,7 +20,7 @@ void shiftManager::runShift(int shift)
 	//The existing game logic for serving customers would go here. 
 	//For now, we will simulate serving customers with a simple loop.
 }
-void ShiftManager::showShiftEnd()
+void shiftManager::showShiftEnd()
 {
 	std::cout << screens.getShiftOverText(
 		currentShift.getShiftNumber(), 

@@ -62,5 +62,5 @@ bool Shift::isShiftOver() const
 std::string Shift::getStatusText() const
 {
 	return "Shift " + std::to_string(shiftNumber)
-		+ " | Customers left: " + std::to_string(getCustomersLeft())
+		+ " | Customers left: " + std::to_string(getCustomersLeft());
 }
