@@ -115,7 +115,9 @@ void Game::startGame()
 				cout << "Please select a valid option.\n";
 			}
 		}
-		if (playerSandwich.matchesOrder(orderBook[customerIndex].getCorrectSandwich()))
+		vector<string> correctIngredients = orderBook[customerIndex].getCorrectSandwich();
+
+		if (playerSandwich.matchesOrder(correctIngredients))
 		{
 			cout << "\nCongratulations! You made the correct sandwich!\n\n";
 		}
@@ -123,7 +125,7 @@ void Game::startGame()
 		{
 			cout << "\nSorry, that's not the correct sandwich. The correct ingredients were:\n\n";
 
-			for (const string& ingredient : orderBook[customerIndex].getCorrectSandwich())
+			for (const string& ingredient : correctIngredients)
 			{
 				cout << "- " << ingredient << "\n";
 			}
