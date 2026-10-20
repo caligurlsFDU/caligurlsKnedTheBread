@@ -36,17 +36,19 @@ void Game::startGame()
 		while (sandwichMade == false)
 		{
 			int userChoice;
-			cout << "Choose an option: ";
-			cin >> userChoice;
+			string input;
 
-			if (cin.fail())
+			cout << "Enter your choice: ";
+			getline(cin, input);
+
+			stringstream inputStream(input);
+			char extra;
+
+			if (!(inputStream >> userChoice) || (inputStream >> extra))
 			{
-				cin.clear();
-				cin.ignore(10000, '\n');
-				cout << "Please select a valid number.\n";
+				cout << "Please enter one number at a time.\n";
 				continue;
 			}
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 			if (ingredients::isValidIngredient(userChoice))
 			{
