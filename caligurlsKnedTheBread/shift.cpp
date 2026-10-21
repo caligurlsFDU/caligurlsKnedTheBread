@@ -1,35 +1,14 @@
 #include "shift.h"
+#include "shiftConfig.h"
 
-int Shift::getTotalShifts()
-{
-	return 3; // Total number of shifts in the game
-}
-int Shift::getCustomerCount(int shift)
-{
-	switch (shift)
-	{
-	case 1:
-		return 3; // Number of customers in shift 1
-	case 2:
-		return 4; // Number of customers in shift 2
-	case 3:
-		return 5; // Number of customers in shift 3
-	default:
-		return 0; // Invalid shift number
-	}
-}
-bool Shift::isValidShift(int shift)
-{
-	return shift >= 1 && shift <= getTotalShifts();
-}
 void Shift::startShift(int shift)
 {
-	if (!isValidShift(shift))
+	if (!shiftConfig::isValidShift(shift))
 	{
 		return;
 	}
 	shiftNumber = shift;
-	customerCount = getCustomerCount(shift);
+	customerCount = shiftConfig::getCustomerCount(shift);
 	customersServed = 0;
 	totalRating = 0;
 }

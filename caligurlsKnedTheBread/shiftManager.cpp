@@ -1,10 +1,11 @@
 #include "shiftManager.h"
+#include "shiftConfig.h"
 #include <iostream>
 #include <limits>
 
 void shiftManager::runAllShifts()
 {
-	for (int shift = 1; shift <= Shift::getTotalShifts(); shift++)
+	for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 	{
 		runShift(shift);
 		showShiftEnd();

@@ -146,6 +146,7 @@
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="sandwich.cpp" />
     <ClCompile Include="shift.cpp" />
+    <ClCompile Include="shiftConfig.cpp" />
     <ClCompile Include="shiftManager.cpp" />
     <ClCompile Include="shiftScreens.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="menu.h" />
     <ClInclude Include="sandwich.h" />
     <ClInclude Include="shift.h" />
+    <ClInclude Include="shiftConfig.h" />
     <ClInclude Include="shiftManager.h" />
     <ClInclude Include="shiftScreens.h" />
   </ItemGroup>
