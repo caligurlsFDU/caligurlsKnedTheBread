@@ -75,7 +75,7 @@ int Game::serveCustomer(Customer& customer)
 			getline(cin, input);
 			stringstream removeStream(input);
 			int removeChoice;
-			if (!(removeStream >> removeChoice) || (removeStream >> extra)
+			if (!(removeStream >> removeChoice) || (removeStream >> extra())
 			{
 				cout << "Invalid input. Sandwich unchanged." << endl;
 				continue;
