@@ -74,7 +74,7 @@ int Game::serveCustomer(Customer& customer)
 			getline(cin, input);
 			stringstream removeStream(input);
 			int removeChoice;
-			if (!(removeStream >> removeChoice) || (removeStream >> extra())
+			if (!(removeStream >> removeChoice) || (removeStream >> extra))
 			{
 				cout << "Invalid input. Sandwich unchanged.\n";
 				continue;
@@ -85,7 +85,8 @@ int Game::serveCustomer(Customer& customer)
 				sandwich.removeIngredient(name);
 				cout << "Removed " << name << ".\n";
 			}
-			else {
+			else
+			{
 				cout << "Choose a valid ingredient number to remove.\n";
 			}
 		}
@@ -112,7 +113,7 @@ int Game::serveCustomer(Customer& customer)
 			{
 				cout << "- " << ingrdient << "\n";
 			}
-			return;
+			return 0;
 		}
 	}
 }
