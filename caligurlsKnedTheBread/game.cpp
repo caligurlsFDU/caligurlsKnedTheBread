@@ -46,7 +46,7 @@ int Game::serveCustomer(Customer& customer)
 			string name = ingredients::getIngredientName(userChoice);
 			const vector<string>& currentIngredients = sandwich.getIngredients();
 
-			if (find(currentIngredients.begin(), currentIngredients.end(), name) != currentIngreidnets.end()
+			if (find(currentIngredients.begin(), currentIngredients.end(), name) != currentIngreidnets.end())
 			{
 				cout << "You already added " << name << ".\n"
 			}
@@ -67,7 +67,7 @@ int Game::serveCustomer(Customer& customer)
 				continue;
 			}
 			cout << "Current sandwich Ingreidnets:\n";
-			for (int = 0; i < static_cast<int>(currentIngreidents.size()); i++)
+			for (int i = 0; i < static_cast<int>(currentIngreidents.size()); i++)
 			{
 				cout << i + 1 << ". " << currentIngredients[i] << "\n";
 			}
@@ -76,12 +76,11 @@ int Game::serveCustomer(Customer& customer)
 			stringstream removeStream(input);
 			int removeChoice;
 			if (!(removeStream >> removeChoice) || (removeStream >> extra)
-				|| !ingredients::isValidIngredient(removeChoice))
 			{
 				cout << "Invalid input. Sandwich unchanged." << endl;
 				continue;
 			}
-			if (removeChoice >= 1 && removeChoice <= static_cast(currentIngredients.size()))
+			if (removeChoice >= 1 && removeChoice <= static_cast<int>(currentIngredients.size()))
 			{
 				string name = currentIngreidents[removeChoice - 1];
 			sandwich.removeIngredient(name);
