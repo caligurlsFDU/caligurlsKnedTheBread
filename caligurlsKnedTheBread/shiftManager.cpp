@@ -73,7 +73,7 @@ int shiftManager::readChoice()
 	{
 		std::cout << screens.getInvalidChoiceText();
 		std::cin.clear(); // Clear the error flag
-		std::numeric_limits<std::streamsize>::max(); // Ignore the rest of the line
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'; // Ignore the rest of the line
 		std::cout << "Please enter a valid number: ";
 	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the rest of the line

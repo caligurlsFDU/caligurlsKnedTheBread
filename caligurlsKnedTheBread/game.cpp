@@ -44,11 +44,33 @@ int Game::serveCustomer(Customer& customer)
 		if (ingredients::isValidIngredient(userChoice))
 		{
 			string name = ingredients::getIngredientName(userChoice);
-			sandwich.addIngredient(name);
-			cout << "Added " << name << "." << endl;
+			const vector<string>& currentIngredients = sandwich.getIngredients();
+
+			if (find(currentIngredients.begin(), currentIngredients.end(), name) != currentIngreidnets.end()
+			{
+				cout << "You already added " << name << ".\n"
+			}
+			else
+			{
+				sandwich.addIngredient(name);
+				cout << "Added " << name << ".\n";
+			}
 		}
 		else if (userChoice == removeIngredientOption)
+		
 		{
+			const vector<string>& currentIngredients = sandwich.getIngredients();
+
+			if (currentIngreidents.empty())
+			{
+				cout << "Your sandwich is empty\n";
+				continue;
+			}
+			cout << "Current sandwich Ingreidnets:\n";
+			for (int = 0; i < static_cast<int>(currentIngreidents.size()); i++)
+			{
+				cout << i + 1 << ". " << currentIngredients[i] << "\n";
+			}
 			cout << "Enter the number of the ingredient to remove: ";
 			getline(cin, input);
 			stringstream removeStream(input);
@@ -59,9 +81,15 @@ int Game::serveCustomer(Customer& customer)
 				cout << "Invalid input. Sandwich unchanged." << endl;
 				continue;
 			}
-			string name = ingredients::getIngredientName(removeChoice);
+			if (removeChoice >= 1 && removeChoice <= static_cast(currentIngredients.size()))
+			{
+				string name = currentIngreidents[removeChoice - 1];
 			sandwich.removeIngredient(name);
-			cout << "Removed " << name << "." << endl;
+			cout << "Removed " << name << ".\n";
+			}
+			else {
+				cout << "Choose a valid ingredient number to remove.\n";
+			}
 		}
 		else if (userChoice == finishSandwichOption)
 		{
@@ -71,6 +99,21 @@ int Game::serveCustomer(Customer& customer)
 		{
 			cout << "Invalid choice. Please pick a number from the list." << endl;
 		}
+		// check is completed sandwich matches requested sandwich
+		vector<string> correctIngredients = customer.getCorrectSandwich();
 
-	}
-} 
+		if (sandwich.matchesOrder(correctIngredients))
+		{
+			cout << "\nCongratulations! You made the correct sandwich!\n\n";
+			return 1;
+		}
+		else
+		{
+			cout << "\nSorry, that's not the correct sandwich. " << "The correct ingredients were:\n\n";
+			for (const string& ingrdient : correctIngreidents)
+			{
+				cout << "- " << ingrdient << "\n"
+			}
+			return
+		}
+	} 
