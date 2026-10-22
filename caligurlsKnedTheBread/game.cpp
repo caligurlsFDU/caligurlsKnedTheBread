@@ -57,7 +57,6 @@ int Game::serveCustomer(Customer& customer)
 			}
 		}
 		else if (userChoice == removeIngredientOption)
-
 		{
 			const vector<string>& currentIngredients = sandwich.getIngredients();
 
@@ -77,7 +76,7 @@ int Game::serveCustomer(Customer& customer)
 			int removeChoice;
 			if (!(removeStream >> removeChoice) || (removeStream >> extra())
 			{
-				cout << "Invalid input. Sandwich unchanged." << endl;
+				cout << "Invalid input. Sandwich unchanged.\n";
 				continue;
 			}
 			if (removeChoice >= 1 && removeChoice <= static_cast<int>(currentIngredients.size()))
