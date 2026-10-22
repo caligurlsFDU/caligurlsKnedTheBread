@@ -66,7 +66,7 @@ void shiftManager::showShop()
 		choice = readChoice();
 	}
 }
-int shiftMangr::readChoice()
+int shiftManager::readChoice()
 {
 	int choice;
 	while (!(std::cin >> choice))

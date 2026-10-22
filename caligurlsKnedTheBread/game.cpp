@@ -24,24 +24,53 @@ int Game::serveCustomer(Customer& customer)
 	cout << "Customer Order:" << endl;
 	customer.displayOrder();
 	Sandwich sandwich;
-	cout << ingredients::getIngredientsText() << endl;
+	cout << ingredients::getIngredientListText() << endl;
 	cout << finishSandwichOption << ". Finish Sandwich" << endl;
 	bool sandwichMade = false;
 	while (!sandwichMade)
 	{
 		int userChoice;
-	string input;
-	cout << "Enter your choice: ";
-	getline(cin, input);
-	stringstream inputStream(input);
-	char extra;
+		string input;
+		cout << "Enter your choice: ";
+		getline(cin, input);
+		stringstream inputStream(input);
+		char extra;
 
-	if (!(inputStream >> userChoice) || (inputStream >> extra))
-	{
-		cout << "Invalid input. Please enter a number." << endl;
-		continue;
+		if (!(inputStream >> userChoice) || (inputStream >> extra))
+		{
+			cout << "Invalid input. Please enter a number." << endl;
+			continue;
+		}
+		if (ingredients::isValidIngredient(userChoice))
+		{
+			string name = ingredients::getIngredientName(userChoice);
+			sandwich.addIngredient(name);
+			cout << "Added " << name << "." << endl;
+		}
+		else if (userChoice == removeIngredientOption)
+		{
+			cout << "Enter the number of the ingredient to remove: ";
+			getline(cin, input);
+			stringstream removeStream(input);
+			int removeChoice;
+			if (!(removeStream >> removeChoice) || (removeStream >> extra)
+				|| !ingredients::isValidIngredient(removeChoice))
+			{
+				cout << "Invalid input. Sandwich unchanged." << endl;
+				continue;
+			}
+			string name = ingredients::getIngredientName(removeChoice);
+			sandwich.removeIngredient(name);
+			cout << "Removed " << name << "." << endl;
+		}
+		else if (userChoice == finishSandwichOption)
+		{
+			sandwichMade = true;
+		}
+		else
+		{
+			cout << "Invalid choice. Please pick a number from the list." << endl;
+		}
+
 	}
-	if (ingredients::isValidIngredient(userChoice))
-	{
-		string
-
+} 
