@@ -3,17 +3,22 @@
 #define shiftManagerH
 #include "shift.h"
 #include "shiftScreens.h"
+#include "customer.h"
+#include <vector>
+class Game;
 class shiftManager
 {
 public:
-	void runAllShifts();
-	void runShift(int shift);
-	void showShiftEnd();
+	void runAllShifts(Game& game);
+	void runShift(int shift, Game& game);
+	int showShiftEnd();
 	void showShop();
 	int readChoice();
 private:
 	Shift currentShift;
 	shiftScreens screens;
+	std::vector<Customer> orderBook;
+	int customerIndex = 0;
 };
 
 #endif
