@@ -46,9 +46,9 @@ int Game::serveCustomer(Customer& customer)
 			string name = ingredients::getIngredientName(userChoice);
 			const vector<string>& currentIngredients = sandwich.getIngredients();
 
-			if (find(currentIngredients.begin(), currentIngredients.end(), name) != currentIngreidnets.end())
+			if (find(currentIngredients.begin(), currentIngredients.end(), name) != currentIngredients.end())
 			{
-				cout << "You already added " << name << ".\n"
+				cout << "You already added " << name << ".\n;
 			}
 			else
 			{
@@ -61,13 +61,13 @@ int Game::serveCustomer(Customer& customer)
 		{
 			const vector<string>& currentIngredients = sandwich.getIngredients();
 
-			if (currentIngreidents.empty())
+			if (currentIngredients.empty())
 			{
 				cout << "Your sandwich is empty\n";
 				continue;
 			}
 			cout << "Current sandwich Ingreidnets:\n";
-			for (int i = 0; i < static_cast<int>(currentIngreidents.size()); i++)
+			for (int i = 0; i < static_cast<int>(currentIngredients.size()); i++)
 			{
 				cout << i + 1 << ". " << currentIngredients[i] << "\n";
 			}
@@ -75,14 +75,14 @@ int Game::serveCustomer(Customer& customer)
 			getline(cin, input);
 			stringstream removeStream(input);
 			int removeChoice;
-			if (!(removeStream >> removeChoice) || (removeStream >> extra)
+			if (!(removeStream >> removeChoice) || (removeStream >> extra);
 			{
 				cout << "Invalid input. Sandwich unchanged." << endl;
 				continue;
 			}
 			if (removeChoice >= 1 && removeChoice <= static_cast<int>(currentIngredients.size()))
 			{
-				string name = currentIngreidents[removeChoice - 1];
+				string name = currentIngredients[removeChoice - 1];
 			sandwich.removeIngredient(name);
 			cout << "Removed " << name << ".\n";
 			}
@@ -109,10 +109,10 @@ int Game::serveCustomer(Customer& customer)
 		else
 		{
 			cout << "\nSorry, that's not the correct sandwich. " << "The correct ingredients were:\n\n";
-			for (const string& ingrdient : correctIngreidents)
+			for (const string& ingrdient : correctIngredients)
 			{
-				cout << "- " << ingrdient << "\n"
+				cout << "- " << ingrdient << "\n";
 			}
-			return
+			return;
 		}
 	} 
