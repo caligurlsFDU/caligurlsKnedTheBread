@@ -14,11 +14,15 @@ using namespace std;
 constexpr int removeIngredientOption = 0;
 constexpr int finishSandwichOption = 11;
 
+double tempStars;
+double starCount;
+
 void Game::startGame()
 {
 	vector<Customer> orderBook = Customer::createCustomers();
 
 	int customerIndex = 0;
+	starCount = 0;
 
 	while (customerIndex < orderBook.size())
 	{
@@ -130,6 +134,12 @@ void Game::startGame()
 				cout << "- " << ingredient << "\n";
 			}
 		}
+		
+		tempStars = playerSandwich.orderStars(correctIngredients); //call Star-scoring method and assign it to a temp
+		starCount += tempStars; //add the temp to total star count
+		cout << "You earned " << tempStars << " / 5 stars for this order.\n\n"; //display temporary stars
+
+		
 		customerIndex++; // Increment customerIndex to move to the next customer
 	}
 }

@@ -26,7 +26,7 @@ void Customer::setOrder(std::string tempOrder, std::vector<std::string> ingredie
 
 void Customer::displayOrder()
 {
-	cout << "\n\n\nThe customer's order is:\n " << orderPrompt << "\n\n\n";
+	cout << "\n\n\nThe customer's order is:\n" << orderPrompt << "\n\n\n";
 }
 
 std::string Customer::getOrder() const
@@ -38,6 +38,7 @@ std::vector<std::string> Customer::getCorrectSandwich() const
 {
 	return customerOrder;
 }
+
 bool Customer::checkOrder(std::vector<std::string> orderToCheck) const
 {
 	return orderToCheck == customerOrder;

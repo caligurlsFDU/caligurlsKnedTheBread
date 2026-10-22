@@ -1,6 +1,7 @@
 #include "sandwich.h"
 #include <algorithm>
 #include <sstream>
+#include <unordered_map>
 
 Sandwich::Sandwich() 
 {
@@ -72,4 +73,46 @@ bool Sandwich::matchesOrder(const std::string& correctSandwich) const
 				}
 		}
 		return true;
+	}
+
+	// CALI 28 STAR SYSTEM CODE
+
+	double Sandwich::orderStars(const std::vector<std::string>& correctIngredients)
+	{
+		const size_t asked = correctIngredients.size();
+		const size_t delivered = ingredients.size();
+
+		// Count how many of each ingredient was asked for
+		std::unordered_map<std::string, int> remaining;
+		for (const auto& item : correctIngredients)
+		{
+			++remaining[item];
+		}
+
+		// Count delivered ingredients that match, using each asked-for one at most once
+		size_t correct = 0;
+		for (const auto& item : ingredients)
+		{
+			auto it = remaining.find(item);
+			if (it != remaining.end() && it->second > 0)
+			{
+				++correct;
+				--it->second;
+			}
+		}
+
+		// Guard against divide-by-zero (empty order and empty sandwich)
+		if (asked == 0 && delivered == 0)
+		{
+			return 5.0; //default value
+		}
+
+		if (asked >= delivered)
+		{
+			return static_cast<double>(correct) / asked * 5.0;
+		}
+		else
+		{
+			return static_cast<double>(correct) / delivered * 5.0;
+		}
 	}
