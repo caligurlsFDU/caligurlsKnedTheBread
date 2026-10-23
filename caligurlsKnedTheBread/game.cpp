@@ -126,7 +126,7 @@ void Game::startGame()
 			cout << "\nCongratulations! You made the correct sandwich!\n\n";
 		}
 		else
-		{
+		{ 
 			cout << "\nSorry, that's not the correct sandwich. The correct ingredients were:\n\n";
 
 			for (const string& ingredient : correctIngredients)
@@ -138,6 +138,9 @@ void Game::startGame()
 		tempStars = playerSandwich.orderStars(correctIngredients); //call Star-scoring method and assign it to a temp
 		starCount += tempStars; //add the temp to total star count
 		cout << "You earned " << tempStars << " / 5 stars for this order.\n\n"; //display temporary stars
+
+
+		cout << "Current Star Count: " << starCount << "\n"; //I know this is supposed to be after shift, but I wrote this line just to prove starCount can be called;
 
 		
 		customerIndex++; // Increment customerIndex to move to the next customer
