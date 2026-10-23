@@ -114,6 +114,6 @@ bool Sandwich::matchesOrder(const std::string& correctSandwich) const
 		}
 		else
 		{
-			return std::round(static_cast<double>(correct) / deliveredCAC * 5.0 * 2.0) / 2.0;
+			return std::round(static_cast<double>(correct) / delivered * 5.0 * 2.0) / 2.0;
 		}
 	}
