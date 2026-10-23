@@ -98,22 +98,23 @@ int Game::serveCustomer(Customer& customer)
 		{
 			cout << "Invalid choice. Please pick a number from the list." << endl;
 		}
-		// check is completed sandwich matches requested sandwich
-		vector<string> correctIngredients = customer.getCorrectSandwich();
+		
+	}
+	// check is completed sandwich matches requested sandwich
+	vector<string> correctIngredients = customer.getCorrectSandwich();
 
-		if (sandwich.matchesOrder(correctIngredients))
+	if (sandwich.matchesOrder(correctIngredients))
+	{
+		cout << "\nCongratulations! You made the correct sandwich!\n\n";
+		return 1;
+	}
+	else
+	{
+		cout << "\nSorry, that's not the correct sandwich. " << "The correct ingredients were:\n\n";
+		for (const string& ingrdient : correctIngredients)
 		{
-			cout << "\nCongratulations! You made the correct sandwich!\n\n";
-			return 1;
+			cout << "- " << ingrdient << "\n";
 		}
-		else
-		{
-			cout << "\nSorry, that's not the correct sandwich. " << "The correct ingredients were:\n\n";
-			for (const string& ingrdient : correctIngredients)
-			{
-				cout << "- " << ingrdient << "\n";
-			}
-			return 0;
-		}
+		return 0;
 	}
 }
