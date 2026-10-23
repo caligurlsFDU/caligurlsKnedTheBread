@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <sstream>
 #include <unordered_map>
+#include <cmath>
 
 Sandwich::Sandwich() 
 {
@@ -109,10 +110,10 @@ bool Sandwich::matchesOrder(const std::string& correctSandwich) const
 
 		if (asked >= delivered)
 		{
-			return static_cast<double>(correct) / asked * 5.0;
+			return std::round(static_cast<double>(correct) / asked * 5.0 * 2.0) / 2.0;
 		}
 		else
 		{
-			return static_cast<double>(correct) / delivered * 5.0;
+			return std::round(static_cast<double>(correct) / deliveredCAC * 5.0 * 2.0) / 2.0;
 		}
 	}
