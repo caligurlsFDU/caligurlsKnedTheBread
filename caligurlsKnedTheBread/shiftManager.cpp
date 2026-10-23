@@ -76,6 +76,17 @@ int shiftManager::readChoice()
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the rest of the line
 		std::cout << "Please enter a valid number: ";
 	}
+
+	while (std::cin.peek() == ' ' || std::cin.peek() == '\t') {
+		std::cin.get();
+	}
+
+	bool hasExtraInput = std::cin.peek() != '\n';
+
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the rest of the line
+	
+	if (hasExtraInput) {
+		return -1; // Return an invalid choice if there was extra input
+	}
 	return choice;
 }
