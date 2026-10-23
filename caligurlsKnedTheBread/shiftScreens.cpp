@@ -25,13 +25,14 @@ bool shiftScreens::isValidShiftEndOption(int option)
 std::string shiftScreens::getShopText()
 {
 	return "SHOP COMING TO A LOCAL CITY NEAR YOU SOON!\n"
-		"1. Continue\n"
-		"2. Exit shop\n";
+		//"1. Continue\n";
+		"1. Exit shop\n";
 }
 // Validates the user's choice for shop options
 bool shiftScreens::isValidShopOption(int option)
 {
-	return option == 1 || option == 2;
+	return option == 1;
+	//|| option == 2;
 }
 // Returns the text for the invalid choice message
 std::string shiftScreens::getInvalidChoiceText()
