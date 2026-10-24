@@ -6,27 +6,39 @@
 
 void shiftManager::runAllShifts(Game& game)
 {
-	// Create every customer for the whole game up front. customerIndex tracks
-	// who is next in line, so customers carry over across shifts instead of
-	// restarting at the first one each shift.
-	orderBook = Customer::createCustomers();
-	customerIndex = 0;
 
-	// Shifts are numbered starting at 1 so the number matches what the
-	// player sees on screen ("Starting Shift 1").
-	for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
+	int choice;
+
+	while (choice = 1)
 	{
-		runShift(shift, game);
-		int choice = showShiftEnd();
+		// Create every customer for the whole game up front. customerIndex tracks
+		// who is next in line, so customers carry over across shifts instead of
+		// restarting at the first one each shift.
+		orderBook = Customer::createCustomers();
+		customerIndex = 0;
 
-		if (choice == 2) // Go to shop
+		// Shifts are numbered starting at 1 so the number matches what the
+		// player sees on screen ("Starting Shift 1").
+		for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 		{
-			showShop();
+			runShift(shift, game);
+			int choice = showShiftEnd();
+
+			if (choice == 2) // Go to shop
+			{
+				showShop();
+			}
+			else if (choice == 3) // Exit game
+			{
+				std::cout << "Exiting game. Thank you for playing!\n";
+				return;
+			}
 		}
-		else if (choice == 3) // Exit game
+		choice = gameOver();
+
+		if (choice == 2)
 		{
-			std::cout << "Exiting game. Thank you for playing!\n";
-			return;
+			std::cout << "Thank you for playing the game!\n";
 		}
 	}
 }
@@ -70,6 +82,26 @@ void shiftManager::showShop()
 		std::cout << screens.getShopText();
 		choice = readChoice();
 	}
+}
+int shiftManager::gameOver()
+{
+	int choice;
+	std::cout << "Thank you for playing Kned the Bread!\n";
+	std::cout << "You have reached the end of the demo.\n\n";
+	std::cout << "1. Restart Game\n";
+	std::cout << "2. Quit Game\n";
+	std::cout << "Enter your choice: ";
+
+	choice = readChoice();
+	while (choice != 1 && choice != 2)
+	{
+		std::cout << screens.getInvalidChoiceText();
+		std::cout << "1. Restart Game\n";
+		std::cout << "2. Quit Game\n";
+		std::cout << "Enter your choice: ";
+		choice = readChoice();
+	}
+	return choice;
 }
 int shiftManager::readChoice()
 {

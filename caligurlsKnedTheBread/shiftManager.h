@@ -13,6 +13,7 @@ public:
 	void runShift(int shift, Game& game);
 	int showShiftEnd();
 	void showShop();
+	int gameOver();
 	int readChoice();
 private:
 	Shift currentShift;
