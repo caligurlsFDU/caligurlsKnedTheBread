@@ -15,6 +15,7 @@ public:
 	bool matchesOrder(const std::vector<std::string>& correctIngredients) const;
 	bool matchesOrder(const std::string& correctSandwich) const;
     
+    double orderStars(const std::vector<std::string>& correctIngredients);
 private:
     std::vector<std::string> ingredients;
 };

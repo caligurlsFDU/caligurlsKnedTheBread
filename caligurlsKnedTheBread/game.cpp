@@ -19,7 +19,7 @@ void Game::startGame()
 	shiftManager shiftMgr;
 	shiftMgr.runAllShifts(*this);
 }
-int Game::serveCustomer(Customer& customer)
+double Game::serveCustomer(Customer& customer)
 {
 	cout << "Customer Order:" << endl;
 	customer.displayOrder();
@@ -106,7 +106,6 @@ int Game::serveCustomer(Customer& customer)
 	if (sandwich.matchesOrder(correctIngredients))
 	{
 		cout << "\nCongratulations! You made the correct sandwich!\n\n";
-		return 1;
 	}
 	else
 	{
@@ -115,6 +114,10 @@ int Game::serveCustomer(Customer& customer)
 		{
 			cout << "- " << ingrdient << "\n";
 		}
-		return 0;
 	}
+	
+	double stars = sandwich.orderStars(correctIngredients);
+	cout << "\nYou earned " << stars << " / 5 stars\n\n";
+
+	return stars;
 }

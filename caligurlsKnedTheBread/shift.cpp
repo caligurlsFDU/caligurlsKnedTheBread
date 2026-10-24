@@ -1,5 +1,6 @@
 #include "shift.h"
 #include "shiftConfig.h"
+#include <cmath>
 
 // Shift class implementation
 void Shift::startShift(int shift)
@@ -26,12 +27,12 @@ int Shift::getCustomersLeft() const
 	return customerCount - customersServed;
 }
 // Getters for shift properties
-int Shift::getTotalRating() const
+double Shift::getTotalRating() const
 {
 	return totalRating;
 }
 // Getters for shift properties
-bool Shift::serveCustomer(int rating)
+bool Shift::serveCustomer(double rating)
 {
 	if (isShiftOver())
 	{
@@ -41,6 +42,12 @@ bool Shift::serveCustomer(int rating)
 	customersServed++;
 	return true; // Customer served successfully
 }
+
+double Shift::getAverageRating() const
+{
+	return std::round(totalRating / customersServed * 2.0) / 2.0;
+}
+
 // Checks if the shift is over (no more customers left)
 bool Shift::isShiftOver() const
 {

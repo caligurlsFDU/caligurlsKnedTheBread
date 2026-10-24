@@ -6,7 +6,7 @@ class Game
 {
 public:
 	void startGame();
-	int serveCustomer(Customer& customer);
+	double serveCustomer(Customer& customer);
 private:
 	std::string order;
 };

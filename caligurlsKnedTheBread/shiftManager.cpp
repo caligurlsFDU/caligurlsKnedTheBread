@@ -37,14 +37,14 @@ void shiftManager::runShift(int shift, Game& game)
 	while (!currentShift.isShiftOver() && customerIndex < static_cast<int>(orderBook.size()))
 	{
 		std::cout << currentShift.getStatusText() << "\n";
-		int rating = game.serveCustomer(orderBook[customerIndex]);
+		double rating = game.serveCustomer(orderBook[customerIndex]);
 		currentShift.serveCustomer(rating);
 		customerIndex++;
 	}
 }
 int shiftManager::showShiftEnd()
 {
-	std::cout << screens.getShiftOverText(currentShift.getShiftNumber(), currentShift.getTotalRating());
+	std::cout << screens.getShiftOverText(currentShift.getShiftNumber(), currentShift.getAverageRating());
 	std::cout << screens.getShiftEndOptionsText();
 	int choice = readChoice();
 	while (!screens.isValidShiftEndOption(choice))

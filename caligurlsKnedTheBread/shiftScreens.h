@@ -5,7 +5,7 @@
 class shiftScreens
 {
 public:
-	std::string getShiftOverText(int shift, int rating);
+	std::string getShiftOverText(int shift, double averageRating);
 	std::string getShiftEndOptionsText();
 	bool isValidShiftEndOption(int option);
 	std::string getShopText();

@@ -10,15 +10,16 @@ public:
 	void startShift(int shift);
 	int getShiftNumber() const;
 	int getCustomersLeft() const;
-	int getTotalRating() const;
-	bool serveCustomer(int rating);
+	double getTotalRating() const;
+	double getAverageRating() const;
+	bool serveCustomer(double rating);
 	bool isShiftOver() const;
 	std::string getStatusText() const;
 
 private:
 	int shiftNumber = 0;
 	int customersServed = 0;
-	int totalRating = 0;
+	double totalRating = 0;
 	int customerCount = 0;
 };
 #endif

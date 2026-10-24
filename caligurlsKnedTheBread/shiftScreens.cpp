@@ -1,12 +1,16 @@
 #include "shiftScreens.h"
 #include <string>
+#include <sstream>
+#include <iomanip>
 
 // ShiftScreens class implementation
-std::string shiftScreens::getShiftOverText(int shift, int rating)
+std::string shiftScreens::getShiftOverText(int shift, double averageRating)
 {
-	return "Shift Over\n"
-		"Shift " + std::to_string(shift)
-		+ "\nTotal Rating: " + std::to_string(rating) + "\n";
+	std::ostringstream text;
+	text << "Shift Over\n"
+		<< "Shift " << shift
+		<< "\nAverage Rating: " << std::fixed << std::setprecision(1) << averageRating << " / 5\n";
+	return text.str();
 }
 
 // Returns the text for the shift end options
