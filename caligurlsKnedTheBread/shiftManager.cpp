@@ -6,9 +6,14 @@
 
 void shiftManager::runAllShifts(Game& game)
 {
+	// Create every customer for the whole game up front. customerIndex tracks
+	// who is next in line, so customers carry over across shifts instead of
+	// restarting at the first one each shift.
 	orderBook = Customer::createCustomers();
 	customerIndex = 0;
 
+	// Shifts are numbered starting at 1 so the number matches what the
+	// player sees on screen ("Starting Shift 1").
 	for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 	{
 		runShift(shift, game);
@@ -69,6 +74,10 @@ void shiftManager::showShop()
 int shiftManager::readChoice()
 {
 	int choice;
+
+	// std::cin >> choice fails if the input doesn't start with a number
+	// (e.g. "abc"). When that happens, cin goes into an error state and
+	// refuses all further reads until we reset it.
 	while (!(std::cin >> choice))
 	{
 		std::cout << screens.getInvalidChoiceText();
@@ -77,12 +86,21 @@ int shiftManager::readChoice()
 		std::cout << "Please enter a valid number: ";
 	}
 
+
+	// Skip trailing spaces/tabs so input like "2   " still counts as clean.
+	// peek() looks at the next character without removing it.
 	while (std::cin.peek() == ' ' || std::cin.peek() == '\t') {
 		std::cin.get();
 	}
 
+	// After the number and any trailing whitespace, the next character
+	// should be the newline from pressing Enter. Anything else means the
+	// player typed extra junk after the number.
 	bool hasExtraInput = std::cin.peek() != '\n';
 
+
+	// Always clear the rest of the line (including the newline) so the
+	// next prompt starts with fresh input.
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore the rest of the line
 	
 	if (hasExtraInput) {

@@ -14,11 +14,22 @@ using namespace std;
 constexpr int removeIngredientOption = 0;
 constexpr int finishSandwichOption = 11;
 
+// startGame
+// Entry point for a play session. Hands control to the shift manager, which
+// runs every shift and calls back into this Game (via *this) whenever a
+// customer needs to be served.
 void Game::startGame()
 {
 	shiftManager shiftMgr;
 	shiftMgr.runAllShifts(*this);
 }
+
+// serveCustomer
+// Runs the sandwich-building interaction for one customer:
+//   1. Show the customer's order and the ingredient menu.
+//   2. Let the player add/remove ingredients until they choose "Finish".
+//   3. Compare the finished sandwich to the order and score it.
+// Returns the star rating (out of 5) so the shift can track its average.
 double Game::serveCustomer(Customer& customer)
 {
 	cout << "Customer Order:" << endl;
