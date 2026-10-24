@@ -145,6 +145,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="sandwich.cpp" />
+    <ClCompile Include="shift.cpp" />
+    <ClCompile Include="shiftConfig.cpp" />
+    <ClCompile Include="shiftManager.cpp" />
+    <ClCompile Include="shiftScreens.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="customer.h" />
@@ -152,6 +156,10 @@
     <ClInclude Include="ingredients.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="sandwich.h" />
+    <ClInclude Include="shift.h" />
+    <ClInclude Include="shiftConfig.h" />
+    <ClInclude Include="shiftManager.h" />
+    <ClInclude Include="shiftScreens.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
