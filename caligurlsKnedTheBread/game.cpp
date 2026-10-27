@@ -136,12 +136,14 @@ void Game::startGame()
 		}
 		
 		tempStars = playerSandwich.orderStars(correctIngredients); //call Star-scoring method and assign it to a temp
+		tempCash = playerSandwich.cashReturn(correctIngredients); //same for cash.
+
 		starCount += tempStars; //add the temp to total star count
 		cout << "You earned " << tempStars << " / 5 stars for this order.\n\n"; //display temporary stars
-
+		cout << "Earned: $" << tempCash << "!\n"
 
 		cout << "Current Star Count: " << starCount << "\n"; //I know this is supposed to be after shift, but I wrote this line just to prove starCount can be called;
-
+		
 		
 		customerIndex++; // Increment customerIndex to move to the next customer
 	}

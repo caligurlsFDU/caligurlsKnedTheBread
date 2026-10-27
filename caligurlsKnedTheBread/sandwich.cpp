@@ -117,3 +117,11 @@ bool Sandwich::matchesOrder(const std::string& correctSandwich) const
 			return std::round(static_cast<double>(correct) / delivered * 5.0 * 2.0) / 2.0;
 		}
 	}
+
+	double Sandwich::cashReturn(const std::vector<std::string>& correctIngredients)
+	{
+		double cashToReturn;
+		double stars = orderStars(correctIngredients);
+		cashToReturn = 2 * stars;
+		return cashToReturn;
+	}
