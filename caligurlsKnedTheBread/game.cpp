@@ -15,7 +15,11 @@ constexpr int removeIngredientOption = 0;
 constexpr int finishSandwichOption = 11;
 
 double tempStars;
+double tempCash;
+
 double starCount;
+double playerCash;
+double shiftCash;
 
 void Game::startGame()
 {
@@ -140,7 +144,10 @@ void Game::startGame()
 
 		starCount += tempStars; //add the temp to total star count
 		cout << "You earned " << tempStars << " / 5 stars for this order.\n\n"; //display temporary stars
-		cout << "Earned: $" << tempCash << "!\n"
+		cout << "Earned: $" << tempCash << "!\n";
+
+		shiftCash = shiftCash + tempCash;
+		playerCash = playerCash + tempCash; //these two lines add tempCash to both cash trackers. the difference is that shiftCash is reset to 0 after the end of every shift.
 
 		cout << "Current Star Count: " << starCount << "\n"; //I know this is supposed to be after shift, but I wrote this line just to prove starCount can be called;
 		
