@@ -18,6 +18,21 @@ const std::string ingredientNames[num_ingredients + 1] =
     "Mayo"             // 10
 };
 
+const double ingredientPrices[num_ingredients + 1] = 
+{
+    0.00, //unused 0
+    1.00, //established price of white bread 1
+    1.25, //price of wheat bread 2
+    1.50, //price of ham 3
+    1.75, //price of turkey 4
+    2.00, //price of roast beef 5
+    0.50, //price of american cheese 6
+    0.75, //price of swiss cheese 7
+    0.25, //price of lettuce 8
+    0.50, //price of tomato 9
+    0.25, //price of mayo 10
+   
+}
 
 bool ingredients::isValidIngredient(int number)
 {
