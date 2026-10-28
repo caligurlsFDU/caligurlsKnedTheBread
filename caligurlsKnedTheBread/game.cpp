@@ -38,6 +38,7 @@ double Game::serveCustomer(Customer& customer)
 	Sandwich sandwich;
 	cout << ingredients::getIngredientListText() << endl;
 	cout << finishSandwichOption << ". Finish Sandwich" << endl;
+	cout << "\n\n\n";
 	bool sandwichMade = false;
 	while (!sandwichMade)
 	{
