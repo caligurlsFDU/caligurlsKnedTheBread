@@ -28,7 +28,7 @@ void shiftManager::runAllShifts(Game& game)
 			runShift(shift, game);
 
 			//end go game display
-			if (shift == shiftConfig::getTotalShift())
+			if (shift == shiftConfig::getTotalShifts())
 			{
 				std::cout << "Congrats you completed all three shifts in the demo";
 				std::cout << "Thanks for playing kned the bread";

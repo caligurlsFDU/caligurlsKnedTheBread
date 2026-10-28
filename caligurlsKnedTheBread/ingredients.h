@@ -15,4 +15,6 @@ public:
 	static std::string getIngredientName(int ingredientNumber);
 	static bool isValidIngredient(int ingredientNumber);
 	static std::string getIngredientListText();
+	static double getIngredientPrice(int number);
+	static double getIngredientPrice(const std::string& name);
 };
