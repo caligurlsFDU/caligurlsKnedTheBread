@@ -1,4 +1,6 @@
 #include "shiftScreens.h"
+#include "shop.h"
+#include "ingredients.h"
 #include <string>
 #include <sstream>
 #include <iomanip>
@@ -28,14 +30,24 @@ bool shiftScreens::isValidShiftEndOption(int option)
 // Returns the text for the shop screen
 std::string shiftScreens::getShopText()
 {
-	return "SHOP COMING TO A LOCAL CITY NEAR YOU SOON!\n"
-		//"1. Continue\n";
-		"1. Exit shop\n";
+	std::ostringstream text;
+
+	text<< "Kned The Bread Shop\n\n"
+
+		for (int i = 1; i <= shop::getItemCount(); i++)
+		{
+			int price = shop::getPriceCents(i);
+			text << i << ". " << ingredients::getIngredientName(i) << " - $" << price / 100
+				<< "." << std::setw(2) << std::setfill('0') << price % 100 << "\n";
+	}
+	text << "\n0. Exit Shop\n";
+	text << "Choose an option:";
+	return text.str();
 }
 // Validates the user's choice for shop options
 bool shiftScreens::isValidShopOption(int option)
 {
-	return option == 1;
+	return option == 0;
 	//|| option == 2;
 }
 // Returns the text for the invalid choice message
