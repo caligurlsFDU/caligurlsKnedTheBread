@@ -32,7 +32,7 @@ std::string shiftScreens::getShopText()
 {
 	std::ostringstream text;
 
-	text<< "Kned The Bread Shop\n\n"
+	text << "Kned The Bread Shop\n\n";
 
 		for (int i = 1; i <= shop::getItemCount(); i++)
 		{
