@@ -26,7 +26,7 @@ void shiftManager::runAllShifts(Game& game)
 		for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 		{
 			runShift(shift, game);
-			choice = showShiftEnd();
+			choice = showShiftEnd(game);
 
 			if (choice == 2 && shift < shiftConfig::getTotalShifts()) // Go to shop
 			{

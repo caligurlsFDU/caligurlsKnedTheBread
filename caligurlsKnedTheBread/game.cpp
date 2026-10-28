@@ -8,6 +8,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -126,6 +127,15 @@ double Game::serveCustomer(Customer& customer)
 			cout << "- " << ingrdient << "\n";
 		}
 	}
+	
+	double stars = sandwich.orderStars(correctIngredients);
+	double cashEarned = sandwich.giveCash(correctIngredients);
+	giveCash(cashEarned);
+	cout << "\nYou earned " << stars << " / 5 stars\n\n";
+	cout << "Money earned this order: $" << fixed << setprecision(2) << cashEarned << "\n\n";
+
+	return stars;
+}
 	void Game::giveCash(double amount)
 	{
 		shiftTotal += amount;
@@ -146,11 +156,3 @@ double Game::serveCustomer(Customer& customer)
 	{
 		cashTotal += shiftTotal;
 	}
-	double stars = sandwich.orderStars(correctIngredients);
-	double cashEarned = sandwich.giveCash(correctIngreidents);
-	giveCash(cashEarned);
-	cout << "\nYou earned " << stars << " / 5 stars\n\n";
-	cout << "Money earned this order: $" << fixed << setprecision(2) << cashEarned << "\n\n";
-
-	return stars;
-}
