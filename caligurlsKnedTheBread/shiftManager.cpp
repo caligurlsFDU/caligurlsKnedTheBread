@@ -49,6 +49,7 @@ void shiftManager::runAllShifts(Game& game)
 }
 void shiftManager::runShift(int shift, Game& game)
 {
+	game.resetShiftTotal();
 	currentShift.startShift(shift);
 
 	std::cout << "Starting Shift " << currentShift.getShiftNumber() << "\n";
@@ -63,10 +64,17 @@ void shiftManager::runShift(int shift, Game& game)
 		currentShift.serveCustomer(rating);
 		customerIndex++;
 	}
+	game.finishShift();
 }
-int shiftManager::showShiftEnd()
+int shiftManager::showShiftEnd(Game & game)
 {
-	std::cout << screens.getShiftOverText(currentShift.getShiftNumber(), currentShift.getAverageRating());
+	std::cout << screens.getShiftOverText(
+		currentShift.getShiftNumber(), currentShift.getAverageRating());
+	std::cout << std::fixed << std::setprecision(2);
+	std::cout << "Money earned this shift: $"
+		<< game.getShiftTotal() << "\n";
+	std::cout << "total balance: $"
+		<< game.getCashTotal() << "\n\n";
 	std::cout << screens.getShiftEndOptionsText();
 	int choice = readChoice();
 	while (!screens.isValidShiftEndOption(choice))

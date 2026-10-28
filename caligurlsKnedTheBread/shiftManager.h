@@ -11,7 +11,7 @@ class shiftManager
 public:
 	void runAllShifts(Game& game);
 	void runShift(int shift, Game& game);
-	int showShiftEnd();
+	int showShiftEnd(Game& game);
 	void showShop();
 	int gameOver();
 	int readChoice();

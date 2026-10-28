@@ -9,7 +9,7 @@ public:
 
     void addIngredient(const std::string& ingredient);
 	void removeIngredient(const std::string& ingredient);
-
+    double giveCash(const std::vector<std::string>& correctIngredients);
     const std::vector<std::string>& getIngredients() const;
 
 	bool matchesOrder(const std::vector<std::string>& correctIngredients) const;

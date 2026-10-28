@@ -126,9 +126,31 @@ double Game::serveCustomer(Customer& customer)
 			cout << "- " << ingrdient << "\n";
 		}
 	}
-	
+	void Game::giveCash(double amount)
+	{
+		shiftTotal += amount;
+	}
+	double Game::getCashTotal() const
+	{
+		return cashTotal;
+	}
+	double Game::getShiftTotal() const
+	{
+		return shiftTotal;
+	}
+	void Game::resetShiftTotal()
+	{
+		shiftTotal = 0.00;
+	}
+	void Game::finishShift()
+	{
+		cashTotal += shiftTotal;
+	}
 	double stars = sandwich.orderStars(correctIngredients);
+	double cashEarned = sandwich.giveCash(correctIngreidents);
+	giveCash(cashEarned);
 	cout << "\nYou earned " << stars << " / 5 stars\n\n";
+	cout << "Money earned this order: $" << fixed << setprecision(2) << cashEarned << "\n\n";
 
 	return stars;
 }
