@@ -1,15 +1,19 @@
 #include "shiftManager.h"
 #include "shiftConfig.h"
 #include "game.h"
+#include "shop.h"
+#include "ingredients.h"
+#include <iomanip>
+#include <sstream>
 #include <iostream>
 #include <limits>
 
 void shiftManager::runAllShifts(Game& game)
 {
 
-	int choice;
+	int choice = 1;
 
-	while (choice = 1)
+	while (choice == 1)
 	{
 		// Create every customer for the whole game up front. customerIndex tracks
 		// who is next in line, so customers carry over across shifts instead of
@@ -22,9 +26,9 @@ void shiftManager::runAllShifts(Game& game)
 		for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 		{
 			runShift(shift, game);
-			int choice = showShiftEnd();
+			choice = showShiftEnd();
 
-			if (choice == 2) // Go to shop
+			if (choice == 2 && shift < shiftConfig::getTotalShifts()) // Go to shop
 			{
 				showShop();
 			}
@@ -39,6 +43,7 @@ void shiftManager::runAllShifts(Game& game)
 		if (choice == 2)
 		{
 			std::cout << "Thank you for playing the game!\n";
+			return;
 		}
 	}
 }
@@ -74,11 +79,20 @@ int shiftManager::showShiftEnd()
 }
 void shiftManager::showShop()
 {
+	int choice;
 	std::cout << screens.getShopText();
-	int choice = readChoice();
-	while (!screens.isValidShopOption(choice))
+	choice = readChoice();
+	while (choice != 0)
 	{
-		std::cout << screens.getInvalidChoiceText();
+		if (shop::isValidShopItem(choice))
+		{
+			std::cout << ingredients::getIngredientName(choice) << " costs $" << shop::getPriceCents(choice) / 100
+				<< "." << std::setw(2) << std::setfill('0') << shop::getPriceCents(choice) % 100 << "\n";
+		}
+		else 
+		{
+			std::cout << screens.getInvalidChoiceText();
+		}
 		std::cout << screens.getShopText();
 		choice = readChoice();
 	}
