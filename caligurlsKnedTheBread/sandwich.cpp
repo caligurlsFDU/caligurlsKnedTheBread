@@ -120,10 +120,22 @@ bool Sandwich::matchesOrder(const std::string& correctSandwich) const
 	}
 	double Sandwich::giveCash(const std::vector<std::string>& correctIngredients)
 	{
-		double cost = 0.0;
-		for (const std::string& name : correctIngredients)
+		int shopCostCents = 0;
+
+		// price what the player actually put in the sandwich
+		for (const std::string& name : ingredients)
 		{
-			cost += ingredients::getIngredientPrice(name);
+			for (int item = 1; item <= shop::getItemCount(); item++)
+			{
+				if (ingredients::getIngredientName(item) == name)
+				{
+					shopCostCents += shop::getPriceCents(item);
+					break;   // found it, stop searching the shop
+				}
+			}
 		}
-		return cost * 1.5;
+
+		// customer pays shop cost + 50% (rounded to the nearest cent)
+		int customerCents = (shopCostCents * 3 + 1) / 2;
+		return customerCents / 100.0;
 	}
