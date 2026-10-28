@@ -139,5 +139,5 @@ bool Sandwich::matchesOrder(const std::string& correctSandwich) const
 				}
 			}
 		}
-		return cost * 1.5;
+		return totalCents / 100.0;
 	}
