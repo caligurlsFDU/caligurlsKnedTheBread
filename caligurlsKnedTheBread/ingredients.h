@@ -17,4 +17,6 @@ public:
 	static std::string getIngredientListText();
 	static double getIngredientPrice(int number);
 	static double getIngredientPrice(const std::string& name);
+
+	//functions done
 };
