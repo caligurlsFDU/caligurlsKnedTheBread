@@ -87,7 +87,7 @@ int shiftManager::showShiftEnd(Game & game)
 	}
 	return choice;
 }
-void shiftManager::showShop()
+void shiftManager::showShop(Game& game)
 {
 	int choice;
 	std::cout << std::fixed << std::setprecision(2);
@@ -105,10 +105,11 @@ void shiftManager::showShop()
 		{
 			std::cout << screens.getInvalidChoiceText();
 		}
-		std::cout << screens.getShopText();
-		std::cout << "Your total Money: $" << game.getCashTotal() << "\n";
+
+		std::cout << "Enter an ingredient number or 0 to exit:\n";
 		choice = readChoice();
 	}
+	std::cout << "Leaving shop\n";
 }
 int shiftManager::gameOver()
 {
