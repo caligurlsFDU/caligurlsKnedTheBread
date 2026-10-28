@@ -12,7 +12,7 @@ public:
 	void runAllShifts(Game& game);
 	void runShift(int shift, Game& game);
 	int showShiftEnd(Game& game);
-	void showShop();
+	void showShop(Game& game);
 	int gameOver();
 	int readChoice();
 private:
