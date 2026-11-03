@@ -62,6 +62,7 @@ namespace KnedAutomatedTesting
 			Assert::AreEqual(0.0, result, L"Rating is incorrect");
 		}
 		// verify an ingredient is added to the sandwich
+		// first checking the number of ingredients on the sandwich, then checking that the ingredient is present
 		TEST_METHOD(IngredientIsAddedToTheSandwich)
 		{
 			Sandwich s;
@@ -71,6 +72,7 @@ namespace KnedAutomatedTesting
 		}
 
 		// verify an ingredient cannot be added to the sandwich if it is already present
+		// checks that the size of the ingredients vector is still 1 after trying to add the same ingredient twice
 		TEST_METHOD(IngredientCannotBeAddedTwice)
 		{
 			Sandwich s;
@@ -80,6 +82,7 @@ namespace KnedAutomatedTesting
 		}
 
 		// verify that ingredients are removed from the sandwich correctly
+		// checks that the size of the ingredients vector is 0 after adding and then removing an ingredient to an empty sandwich
 		TEST_METHOD(IngredientIsRemovedFromTheSandwich)
 		{
 			Sandwich s;
@@ -89,6 +92,8 @@ namespace KnedAutomatedTesting
 		}
 
 		// verify that ingredients cannot be removed from the sandwich if they are not present
+		// adds an ingredient to the sandwich, then tries to remove a different ingreidient
+		// checks that the size of the ingredients vector is still 1 after trying to remove an ingredient that is not present
 		TEST_METHOD(NotPresentIngedientsCannotBeRemoved)
 		{
 			Sandwich s;
