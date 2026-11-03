@@ -79,8 +79,6 @@ int shiftManager::showShiftEnd(Game & game)
 	std::cout << std::fixed << std::setprecision(2);
 	std::cout << "Money earned this shift: $"
 		<< game.getShiftTotal() << "\n";
-	std::cout << "total balance: $"
-		<< game.getCashTotal() << "\n\n";
 	std::cout << screens.getShiftEndOptionsText();
 	int choice = readChoice();
 	while (!screens.isValidShiftEndOption(choice))
@@ -93,10 +91,11 @@ int shiftManager::showShiftEnd(Game & game)
 }
 void shiftManager::showShop(Game& game)
 {
+	game.clearScreen();
+	game.displayHeader(currentShift.getShiftNumber(), 0, currentShift.getAverageRating());
 	int choice;
 	std::cout << std::fixed << std::setprecision(2);
 	std::cout << screens.getShopText();
-	std::cout << "Your total money: $" << game.getCashTotal() << "\n";
 	choice = readChoice();
 	while (choice != 0)
 	{
