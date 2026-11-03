@@ -78,7 +78,5 @@ namespace KnedAutomatedTesting
 			s.addIngredient("1");
 			Assert::AreEqual((size_t)1, s.getIngredients().size(), L"Ingredient was added twice to the sandwich");
 		}
-
-
 	};
 }
