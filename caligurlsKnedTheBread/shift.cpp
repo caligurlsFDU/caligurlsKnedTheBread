@@ -45,6 +45,10 @@ bool Shift::serveCustomer(double rating)
 
 double Shift::getAverageRating() const
 {
+	if (customersServed == 0)
+	{
+		return 0.0; // Avoid division by zero
+	}
 	return std::round(totalRating / customersServed * 2.0) / 2.0;
 }
 

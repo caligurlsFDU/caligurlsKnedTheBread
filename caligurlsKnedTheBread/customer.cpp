@@ -26,7 +26,7 @@ void Customer::setOrder(std::string tempOrder, std::vector<std::string> ingredie
 
 void Customer::displayOrder()
 {
-	cout << "\n\n\nThe customer's order is:\n\"" << orderPrompt << "\"\n\n\n";
+	cout << "\nThe customer's order is:\n\"" << orderPrompt << "\n";
 }
 
 std::string Customer::getOrder() const

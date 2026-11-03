@@ -8,6 +8,8 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <cstdlib>
+#include <limits>
 #include <iomanip>
 
 using namespace std;
@@ -24,7 +26,29 @@ void Game::startGame()
 	shiftManager shiftMgr;
 	shiftMgr.runAllShifts(*this);
 }
+void Game::clearScreen() 
+{
+	system("cls");
+}
 
+void Game::pressEnterToContinue()
+{
+	string input;
+	cout << "\nPress Enter to continue...";
+	getline(cin, input);
+	clearScreen();
+}
+void Game::displayHeader(int shift, int customer, double starRating)
+{
+	cout << "╔══════════════════════════════════════╗\n";
+	cout << "║           Kned the Bread             ║\n";
+	cout << "╠══════════════════════════════════════╣\n";
+	cout << "║  Shift: " << left << setw(29) << shift << "║\n";                       
+	cout << "║  Customer: " << left << setw(26) << customer << "║\n";
+	cout << "║  Cash Total: $" << left << setw(23) << fixed << setprecision(2) << (cashTotal + shiftTotal) << "║\n";
+	cout << "║  Average Star Rating: " << left << setw(15) << fixed << setprecision(2) << starRating << "║\n";
+	cout << "╚══════════════════════════════════════╝" << endl;
+}
 // serveCustomer
 // Runs the sandwich-building interaction for one customer:
 //   1. Show the customer's order and the ingredient menu.
@@ -33,12 +57,10 @@ void Game::startGame()
 // Returns the star rating (out of 5) so the shift can track its average.
 double Game::serveCustomer(Customer& customer)
 {
-	cout << "Customer Order:" << endl;
 	customer.displayOrder();
 	Sandwich sandwich;
 	cout << ingredients::getIngredientListText() << endl;
 	cout << finishSandwichOption << ". Finish Sandwich" << endl;
-	cout << "\n\n\n";
 	bool sandwichMade = false;
 	while (!sandwichMade)
 	{

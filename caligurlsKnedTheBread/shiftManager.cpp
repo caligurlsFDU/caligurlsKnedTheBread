@@ -53,25 +53,29 @@ void shiftManager::runShift(int shift, Game& game)
 {
 	game.resetShiftTotal();
 	currentShift.startShift(shift);
-
-	std::cout << "Starting Shift " << currentShift.getShiftNumber() << "\n";
+	game.clearScreen();
+	int customerNumber = 1;
 
 	//The existing game logic for serving customers would go here. 
 	//For now, we will simulate serving customers with a simple loop.
 
 	while (!currentShift.isShiftOver() && customerIndex < static_cast<int>(orderBook.size()))
 	{
-		std::cout << currentShift.getStatusText() << "\n";
+		game.displayHeader(currentShift.getShiftNumber(), customerNumber, currentShift.getAverageRating());
 		double rating = game.serveCustomer(orderBook[customerIndex]);
 		currentShift.serveCustomer(rating);
 		customerIndex++;
+		customerNumber++;
+		//pause
+		game.pressEnterToContinue();
 	}
 	game.finishShift();
 }
 int shiftManager::showShiftEnd(Game & game)
 {
-	std::cout << screens.getShiftOverText(
-		currentShift.getShiftNumber(), currentShift.getAverageRating());
+	game.displayHeader(currentShift.getShiftNumber(), 0, currentShift.getAverageRating());
+
+	std::cout << screens.getShiftOverText(currentShift.getShiftNumber(), currentShift.getAverageRating());
 	std::cout << std::fixed << std::setprecision(2);
 	std::cout << "Money earned this shift: $"
 		<< game.getShiftTotal() << "\n";

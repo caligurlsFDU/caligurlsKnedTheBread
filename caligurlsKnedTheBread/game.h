@@ -12,6 +12,9 @@ public:
 	void giveCash(double cashEarned);
 	void resetShiftTotal();
 	void finishShift();
+	void clearScreen();
+	void pressEnterToContinue();
+	void displayHeader(int shift, int customer, double starRating);
 private:
 	std::string order;
 	double cashTotal = 0;
