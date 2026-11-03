@@ -78,5 +78,23 @@ namespace KnedAutomatedTesting
 			s.addIngredient("1");
 			Assert::AreEqual((size_t)1, s.getIngredients().size(), L"Ingredient was added twice to the sandwich");
 		}
+
+		// verify that ingredients are removed from the sandwich correctly
+		TEST_METHOD(IngredientIsRemovedFromTheSandwich)
+		{
+			Sandwich s;
+			s.addIngredient("1");
+			s.removeIngredient("1");
+			Assert::AreEqual((size_t)0, s.getIngredients().size(), L"Ingredient was not removed from the sandwich");
+		}
+
+		// verify that ingredients cannot be removed from the sandwich if they are not present
+		TEST_METHOD(NotPresentIngedientsCannotBeRemoved)
+		{
+			Sandwich s;
+			s.addIngredient("1");
+			s.removeIngredient("2");
+			Assert::AreEqual((size_t)1, s.getIngredients().size(), L"Ingredient was removed from the sandwich even though it was not present");
+		}
 	};
 }
