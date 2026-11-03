@@ -61,5 +61,24 @@ namespace KnedAutomatedTesting
 
 			Assert::AreEqual(0.0, result, L"Rating is incorrect");
 		}
+		// verify an ingredient is added to the sandwich
+		TEST_METHOD(IngredientIsAddedToTheSandwich)
+		{
+			Sandwich s;
+			s.addIngredient("1");
+			Assert::AreEqual((size_t)1, s.getIngredients().size(), L"Wrong number of ingredients on the sandwich");
+			Assert::AreEqual(std::string("1"), s.getIngredients()[0], L"Ingredient was not added to the sandwich");
+		}
+
+		// verify an ingredient cannot be added to the sandwich if it is already present
+		TEST_METHOD(IngredientCannotBeAddedTwice)
+		{
+			Sandwich s;
+			s.addIngredient("1");
+			s.addIngredient("1");
+			Assert::AreEqual((size_t)1, s.getIngredients().size(), L"Ingredient was added twice to the sandwich");
+		}
+
+
 	};
 }
