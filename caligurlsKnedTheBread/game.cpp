@@ -43,19 +43,11 @@ void Game::displayHeader(int shift, int customer, double starRating)
 	cout << "╔══════════════════════════════════════╗\n";
 	cout << "║           Kned the Bread             ║\n";
 	cout << "╠══════════════════════════════════════╣\n";
-	cout << "║  Shift: " << shift << "                            ║\n";
-	cout << "║  Customer: " << customer << "                         ║\n";
-	cout << "║  Cash Total: $" << fixed << setprecision(2) << cashTotal << "                   ║\n";
-	cout << "║  Average Star Rating: " << fixed << setprecision(2) << starRating << "           ║\n";
+	cout << "║  Shift: " << left << setw(29) << shift << "║\n";                       
+	cout << "║  Customer: " << left << setw(26) << customer << "║\n";
+	cout << "║  Cash Total: $" << left << setw(23) << fixed << setprecision(2) << cashTotal << "║\n";
+	cout << "║  Average Star Rating: " << left << setw(15) << fixed << setprecision(2) << starRating << "║\n";
 	cout << "╚══════════════════════════════════════╝" << endl;
-	//cout << "╔══════════════════════════════════════╗\n";
-	//cout << "║           Kned the Bread             ║\n";
-	//cout << "╠══════════════════════════════════════╣\n";
-	//cout << "║  Shift: " << left << setw(29) << shift << "║\n";                       
-	//cout << "║  Customer: " << left << setw(26) << customer << "║\n";
-	//cout << "║  Cash Total: $" << left << setw(23) << fixed << setprecision(2) << cashTotal << "║\n";
-	//cout << "║  Average Star Rating: " << left << setw(15) << fixed << setprecision(2) << starRating << "║\n";
-	//cout << "╚══════════════════════════════════════╝" << endl;
 }
 // serveCustomer
 // Runs the sandwich-building interaction for one customer:
