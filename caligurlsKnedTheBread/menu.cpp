@@ -3,6 +3,7 @@
 #include "customer.h"
 #include <iostream>
 #include <string>
+#include <cstdlib>
 using namespace std;
 
 
@@ -46,9 +47,11 @@ void Menu::displayMenu()
 		}
 		else if (input == "2")
 		{
+			system("cls");
 			showInstructions();
 			cout << "\nPress Enter to return to the menu...";
 			getline(cin, input);
+			system("cls");
 		}
 		else if (input == "3")
 		{
