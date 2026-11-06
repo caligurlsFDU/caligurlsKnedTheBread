@@ -4,6 +4,7 @@
 #include <cctype>
 #include <string>
 
+//sanitization commands finished
 bool orderCommand::isOrderUp(std::string input)
 {
 	bool toReturn = false;
