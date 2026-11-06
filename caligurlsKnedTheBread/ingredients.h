@@ -28,17 +28,17 @@
 
 enum class Ingredient
 {
-	INVALID = 0,
-	INGREDIENT_1 = 1,
-	INGREDIENT_2,
-	INGREDIENT_3,
-	INGREDIENT_4,
-	INGREDIENT_5,
-	INGREDIENT_6,   // swap in the real names, e.g. HAM
-	INGREDIENT_7,   // e.g. AMERICAN_CHEESE
-	INGREDIENT_8,
-	INGREDIENT_9,
-	INGREDIENT_10
+    INVALID = 0,
+    WHITE_BREAD = 1,
+    WHEAT_BREAD,
+    HAM,
+    TURKEY,
+    ROAST_BEEF,
+    AMERICAN_CHEESE,
+    SWISS_CHEESE,
+    LETTUCE,
+    TOMATO,
+    MAYO
 };
 
 class ingredients
