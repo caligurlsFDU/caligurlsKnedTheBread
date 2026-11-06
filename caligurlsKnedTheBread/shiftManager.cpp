@@ -6,29 +6,23 @@
 
 void shiftManager::runAllShifts(Game& game)
 {
+	int choice = 1;
 
-	int choice;
-
-	while (choice = 1)
+	while (choice == 1)
 	{
-		// Create every customer for the whole game up front. customerIndex tracks
-		// who is next in line, so customers carry over across shifts instead of
-		// restarting at the first one each shift.
 		orderBook = Customer::createCustomers();
 		customerIndex = 0;
 
-		// Shifts are numbered starting at 1 so the number matches what the
-		// player sees on screen ("Starting Shift 1").
 		for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 		{
 			runShift(shift, game);
-			int choice = showShiftEnd();
+			int endChoice = showShiftEnd();
 
-			if (choice == 2) // Go to shop
+			if (endChoice == 2) // Go to shop
 			{
 				showShop();
 			}
-			else if (choice == 3) // Exit game
+			else if (endChoice == 3) // Exit game
 			{
 				std::cout << "Exiting game. Thank you for playing!\n";
 				return;
@@ -42,6 +36,8 @@ void shiftManager::runAllShifts(Game& game)
 		}
 	}
 }
+
+
 void shiftManager::runShift(int shift, Game& game)
 {
 	currentShift.startShift(shift);
@@ -54,7 +50,7 @@ void shiftManager::runShift(int shift, Game& game)
 	while (!currentShift.isShiftOver() && customerIndex < static_cast<int>(orderBook.size()))
 	{
 		std::cout << currentShift.getStatusText() << "\n";
-		double rating = game.serveCustomer(orderBook[customerIndex]);
+		double rating = game.serveCustomer(orderBook[customerIndex], shift);
 		currentShift.serveCustomer(rating);
 		customerIndex++;
 	}

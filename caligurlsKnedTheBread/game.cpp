@@ -8,6 +8,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include "orderCommand.h"
 
 using namespace std;
 
@@ -30,18 +31,79 @@ void Game::startGame()
 //   2. Let the player add/remove ingredients until they choose "Finish".
 //   3. Compare the finished sandwich to the order and score it.
 // Returns the star rating (out of 5) so the shift can track its average.
-double Game::serveCustomer(Customer& customer)
+double Game::serveCustomer(Customer& customer, int shift)
 {
+	const bool isFirstShift = (shift == 1);
+	const vector<string> correctIngredients = customer.getCorrectSandwich();
+
 	cout << "Customer Order:" << endl;
 	customer.displayOrder();
 	Sandwich sandwich;
-	cout << ingredients::getIngredientListText() << endl;
-	cout << finishSandwichOption << ". Finish Sandwich" << endl;
+
+	if (isFirstShift)
+	{
+		cout << ingredients::getIngredientListText() << endl;
+		cout << finishSandwichOption << ". Finish Sandwich" << endl;
+	}
+	else
+	{
+		cout << "Type an ingredient name to add it. Type 'order up' when finished.\n";
+	}
+
 	bool sandwichMade = false;
 	while (!sandwichMade)
 	{
-		int userChoice;
 		string input;
+
+		// ---------- Shift 2+: typed ingredient names ----------
+		if (!isFirstShift)
+		{
+			cout << "Enter ingredient: ";
+			getline(cin, input);
+
+			if (orderCommand::isOrderUp(input))
+			{
+				if (sandwich.matchesOrder(correctIngredients))
+				{
+					sandwichMade = true;
+				}
+				else
+				{
+					cout << "The order isn't complete yet. You're still missing ingredients.\n";
+				}
+				continue;
+			}
+
+			Ingredient ing = ingredients::fromText(input);
+			if (ing == Ingredient::INVALID)
+			{
+				cout << "\"" << input << "\" wasn't accepted. Check your spelling.\n";
+				continue;
+			}
+
+			string name = ingredients::getIngredientName(static_cast<int>(ing));
+			bool inOrder = find(correctIngredients.begin(), correctIngredients.end(), name)
+				!= correctIngredients.end();
+			const vector<string>& current = sandwich.getIngredients();
+
+			if (!inOrder)
+			{
+				cout << name << " isn't part of this order, so it wasn't added.\n";
+			}
+			else if (find(current.begin(), current.end(), name) != current.end())
+			{
+				cout << "You already added " << name << ".\n";
+			}
+			else
+			{
+				sandwich.addIngredient(name);
+				cout << "Added " << name << ".\n";
+			}
+			continue;
+		}
+
+		// ---------- Shift 1: numbered menu (existing logic) ----------
+		int userChoice;
 		cout << "Enter your choice: ";
 		getline(cin, input);
 		stringstream inputStream(input);
@@ -76,7 +138,7 @@ double Game::serveCustomer(Customer& customer)
 				cout << "Your sandwich is empty\n";
 				continue;
 			}
-			cout << "Current sandwich Ingreidnets:\n";
+			cout << "Current sandwich ingredients:\n";
 			for (int i = 0; i < static_cast<int>(currentIngredients.size()); i++)
 			{
 				cout << i + 1 << ". " << currentIngredients[i] << "\n";
@@ -109,11 +171,9 @@ double Game::serveCustomer(Customer& customer)
 		{
 			cout << "Invalid choice. Please pick a number from the list." << endl;
 		}
-		
 	}
-	// check is completed sandwich matches requested sandwich
-	vector<string> correctIngredients = customer.getCorrectSandwich();
 
+	// check if completed sandwich matches requested sandwich
 	if (sandwich.matchesOrder(correctIngredients))
 	{
 		cout << "\nCongratulations! You made the correct sandwich!\n\n";
@@ -121,12 +181,12 @@ double Game::serveCustomer(Customer& customer)
 	else
 	{
 		cout << "\nSorry, that's not the correct sandwich. " << "The correct ingredients were:\n\n";
-		for (const string& ingrdient : correctIngredients)
+		for (const string& ingredient : correctIngredients)
 		{
-			cout << "- " << ingrdient << "\n";
+			cout << "- " << ingredient << "\n";
 		}
 	}
-	
+
 	double stars = sandwich.orderStars(correctIngredients);
 	cout << "\nYou earned " << stars << " / 5 stars\n\n";
 
