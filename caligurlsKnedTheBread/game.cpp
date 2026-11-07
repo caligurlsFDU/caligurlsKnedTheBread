@@ -47,7 +47,7 @@ double Game::serveCustomer(Customer& customer, int shift)
 	}
 	else
 	{
-		cout << "Type an ingredient name to add it. Type 'order up' when finished. Type 'bin' to remove ingredients from the sandwich.\n";
+		cout << "Type an ingredient name to add it. Type 'order up' when finished. Type 'bin' to throw an ingredient away.\n";
 	}
 
 	bool sandwichMade = false;
@@ -71,6 +71,39 @@ double Game::serveCustomer(Customer& customer, int shift)
 				{
 					cout << "The order isn't complete yet. You're still missing ingredients.\n";
 				}
+				continue;
+			}
+
+			//Check if player enters "bin" to remove an ingredient from the sandwich
+			//If the sandwich is empty, it will notify the player and continue to the next iteration of the loop
+
+			if (orderCommand::isBin(input))
+			{
+				const vector<string>& binCurrent = sandwich.getIngredients();
+				if (binCurrent.empty()) { cout << "Sorry, you can't throw a NOTHING sandwich in the bin!\n"; continue; }
+
+				cout << "Current sandwich ingredients:\n";
+				for (int i = 0; i < static_cast<int>(binCurrent.size()); i++)
+					cout << i + 1 << ". " << binCurrent[i] << "\n";
+
+				cout << "Enter the number of the ingredient to throw in the bin: ";
+				getline(cin, input);
+				stringstream binStream(input);
+				int binChoice;
+				char binExtra;
+				if (!(binStream >> binChoice) || (binStream >> binExtra))
+				{
+					cout << "Invalid input. Sandwich unchanged.\n";
+					continue;
+				}
+				if (binChoice >= 1 && binChoice <= static_cast<int>(binCurrent.size()))
+				{
+					string removed = binCurrent[binChoice - 1];
+					sandwich.removeIngredient(removed);
+					cout << "Threw " << removed << " in the bin.\n";
+				}
+				else
+					cout << "Choose a valid ingredient number to throw in the bin.\n";
 				continue;
 			}
 
