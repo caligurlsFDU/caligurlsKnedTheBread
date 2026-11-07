@@ -36,14 +36,13 @@ double Game::serveCustomer(Customer& customer, int shift)
 	const bool isFirstShift = (shift == 1);
 	const vector<string> correctIngredients = customer.getCorrectSandwich();
 
-	cout << "Customer Order:" << endl;
 	customer.displayOrder();
 	Sandwich sandwich;
 
 	if (isFirstShift)
 	{
-		cout << ingredients::getIngredientListText() << endl;
-		cout << finishSandwichOption << ". Finish Sandwich" << endl;
+		cout << ingredients::getIngredientListText();
+		cout << finishSandwichOption << ". Finish Sandwich" << endl << endl;
 	}
 	else
 	{
@@ -63,14 +62,7 @@ double Game::serveCustomer(Customer& customer, int shift)
 
 			if (orderCommand::isOrderUp(input))
 			{
-				if (sandwich.matchesOrder(correctIngredients))
-				{
-					sandwichMade = true;
-				}
-				else
-				{
-					cout << "The order isn't complete yet. You're still missing ingredients.\n";
-				}
+				sandwichMade = true;
 				continue;
 			}
 
@@ -115,15 +107,9 @@ double Game::serveCustomer(Customer& customer, int shift)
 			}
 
 			string name = ingredients::getIngredientName(static_cast<int>(ing));
-			bool inOrder = find(correctIngredients.begin(), correctIngredients.end(), name)
-				!= correctIngredients.end();
 			const vector<string>& current = sandwich.getIngredients();
 
-			if (!inOrder)
-			{
-				cout << name << " isn't part of this order, so it wasn't added.\n";
-			}
-			else if (find(current.begin(), current.end(), name) != current.end())
+			if (find(current.begin(), current.end(), name) != current.end())
 			{
 				cout << "You already added " << name << ".\n";
 			}
