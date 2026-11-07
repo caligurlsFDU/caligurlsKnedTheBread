@@ -47,7 +47,7 @@ double Game::serveCustomer(Customer& customer, int shift)
 	}
 	else
 	{
-		cout << "Type an ingredient name to add it. Type 'order up' when finished.\n";
+		cout << "Type an ingredient name to add it. Type 'order up' when finished. Type 'bin' to remove ingredients from the sandwich.\n";
 	}
 
 	bool sandwichMade = false;
