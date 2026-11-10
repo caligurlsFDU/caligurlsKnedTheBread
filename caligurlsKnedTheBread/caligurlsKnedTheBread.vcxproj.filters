@@ -42,13 +42,19 @@
     <ClCompile Include="shiftManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="shiftConfig.cpp">
+    <ClCompile Include="shiftState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="shop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
+    <ClCompile Include="shiftConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="orderCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+      </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menu.h">
       <Filter>Header Files</Filter>
@@ -75,6 +81,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shiftConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shiftState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="orderCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shop.h">

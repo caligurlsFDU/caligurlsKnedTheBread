@@ -148,11 +148,13 @@
     <ClCompile Include="ingredients.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
+    <ClCompile Include="orderCommand.cpp" />
     <ClCompile Include="sandwich.cpp" />
     <ClCompile Include="shift.cpp" />
     <ClCompile Include="shiftConfig.cpp" />
     <ClCompile Include="shiftManager.cpp" />
     <ClCompile Include="shiftScreens.cpp" />
+    <ClCompile Include="shiftState.cpp" />
     <ClCompile Include="shop.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -160,11 +162,13 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="ingredients.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="orderCommand.h" />
     <ClInclude Include="sandwich.h" />
     <ClInclude Include="shift.h" />
     <ClInclude Include="shiftConfig.h" />
     <ClInclude Include="shiftManager.h" />
     <ClInclude Include="shiftScreens.h" />
+    <ClInclude Include="shiftState.h" />
     <ClInclude Include="shop.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

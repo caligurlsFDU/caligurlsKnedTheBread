@@ -1,5 +1,6 @@
-
 #include "ingredients.h"
+#include <algorithm>
+#include <cctype>
 
 const int num_ingredients = 10;
 
@@ -18,6 +19,44 @@ const std::string ingredientNames[num_ingredients + 1] =
     "Mayo"             // 10
 };
 
+Ingredient ingredients::fromNumber(int number)
+{
+    if (isValidIngredient(number))
+    {
+        return static_cast<Ingredient>(number);
+    }
+    return Ingredient::INVALID;
+}
+
+std::string ingredients::sanitize(const std::string& input)
+{
+    std::string result = input;
+
+    // trim
+    result.erase(0, result.find_first_not_of(" \t\r\n"));
+    result.erase(result.find_last_not_of(" \t\r\n") + 1);
+
+    // lowercase
+    std::transform(result.begin(), result.end(), result.begin(),
+        [](unsigned char c) { return std::tolower(c); });
+
+    return result;
+}
+
+
+Ingredient ingredients::fromText(const std::string& input)
+{
+    std::string cleaned = sanitize(input);
+
+    for (int i = 1; i <= num_ingredients; i++)
+    {
+        if (sanitize(ingredientNames[i]) == cleaned)
+        {
+            return static_cast<Ingredient>(i);
+        }
+    }
+    return Ingredient::INVALID;
+}
 const double ingredientPrices[num_ingredients + 1] =
 {
     0.00, //unused 0

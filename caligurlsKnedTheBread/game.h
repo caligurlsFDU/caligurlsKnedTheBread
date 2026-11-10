@@ -6,7 +6,7 @@ class Game
 {
 public:
 	void startGame();
-	double serveCustomer(Customer& customer);
+	double serveCustomer(Customer& customer, int shift);
 	double getCashTotal() const;
 	double getShiftTotal() const;
 	void giveCash(double cashEarned);

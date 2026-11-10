@@ -30,6 +30,12 @@
     <ClCompile Include="..\caligurlsKnedTheBread\sandwich.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\caligurlsKnedTheBread\ingredients.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\caligurlsKnedTheBread\shop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

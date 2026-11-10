@@ -10,19 +10,13 @@
 
 void shiftManager::runAllShifts(Game& game)
 {
-
 	int choice = 1;
 
 	while (choice == 1)
 	{
-		// Create every customer for the whole game up front. customerIndex tracks
-		// who is next in line, so customers carry over across shifts instead of
-		// restarting at the first one each shift.
 		orderBook = Customer::createCustomers();
 		customerIndex = 0;
 
-		// Shifts are numbered starting at 1 so the number matches what the
-		// player sees on screen ("Starting Shift 1").
 		for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 		{
 			runShift(shift, game);
@@ -49,6 +43,8 @@ void shiftManager::runAllShifts(Game& game)
 		}
 	}
 }
+
+
 void shiftManager::runShift(int shift, Game& game)
 {
 	game.resetShiftTotal();
@@ -62,7 +58,7 @@ void shiftManager::runShift(int shift, Game& game)
 	while (!currentShift.isShiftOver() && customerIndex < static_cast<int>(orderBook.size()))
 	{
 		game.displayHeader(currentShift.getShiftNumber(), customerNumber, currentShift.getAverageRating());
-		double rating = game.serveCustomer(orderBook[customerIndex]);
+		double rating = game.serveCustomer(orderBook[customerIndex], shift);
 		currentShift.serveCustomer(rating);
 		customerIndex++;
 		customerNumber++;
