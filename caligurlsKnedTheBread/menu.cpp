@@ -42,8 +42,9 @@ void Menu::displayMenu()
 
 		if (input == "1")
 		{
+			system("cls");
 			start();
-			running = false;
+			system("cls");
 		}
 		else if (input == "2")
 		{

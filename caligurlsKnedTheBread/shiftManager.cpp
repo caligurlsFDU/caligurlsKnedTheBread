@@ -26,7 +26,11 @@ void shiftManager::runAllShifts(Game& game)
 		for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 		{
 			runShift(shift, game);
-
+			if (!game.payUtilities(shift))
+			{
+				game.gameOver(shift);
+				return;
+			}
 			//end go game display
 			if (shift == shiftConfig::getTotalShifts())
 			{

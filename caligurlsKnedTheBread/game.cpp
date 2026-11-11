@@ -162,6 +162,7 @@ double Game::serveCustomer(Customer& customer)
 	void Game::giveCash(double amount)
 	{
 		shiftTotal += amount;
+		cashTotal += amount;
 	}
 	double Game::getCashTotal() const
 	{
@@ -178,4 +179,59 @@ double Game::serveCustomer(Customer& customer)
 	void Game::finishShift()
 	{
 		cashTotal += shiftTotal;
+	}
+
+	bool Game::payUtilities(int shift)
+	{
+		utilities.generateCosts(shift);
+		double totalCost = utilities.getTotalCost();
+		if (cashTotal < totalCost)
+		{
+			return false;
+		}
+		clearScreen();
+		displayHeader(shift, 0, 0.0);
+		utilities.displayBreakdown();
+		cout << fixed << setprecision(2);
+		cout << "\nMoney available to pay utilities: $" << cashTotal << "\n";
+		cashTotal -= totalCost;
+		cout << "Utilities paid successfully. Total cost: $" << totalCost << "\n";
+		pressEnterToContinue();
+		return true;
+	}
+	void Game::gameOver(int shiftsSurvived)
+	{
+		clearScreen();
+
+		cout << "╔══════════════════════════════════════╗\n";
+		cout << "║               GAME OVER              ║\n";
+		cout << "╠══════════════════════════════════════╣\n";
+		cout << "║                                      ║\n";
+		cout << "║   You couldn't pay your bills!       ║\n";
+		cout << "║                                      ║\n";
+		cout << "║   Shifts survived: " << shiftsSurvived << "                 ║\n";
+		cout << "║                                      ║\n";
+		cout << "╠══════════════════════════════════════╣\n";
+		cout << "║   1. Return to Home Screen           ║\n";
+		cout << "║   2. Quit Game                       ║\n";
+		cout << "╚══════════════════════════════════════╝\n";
+		string choice;
+		while (true)
+		{
+			cout << "\nEnter your choice: ";
+			getline(cin, choice);
+
+			if (choice == "1")
+			{
+				return;
+			}
+			else if (choice == "2")
+			{
+				exit(0);
+			}
+			else
+			{
+				cout << "Invalid choice. Please enter 1 or 2.\n";
+			}
+		}
 	}

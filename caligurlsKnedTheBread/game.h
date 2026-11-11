@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "customer.h"
+#include "utilities.h"
 
 class Game
 {
@@ -15,8 +16,11 @@ public:
 	void clearScreen();
 	void pressEnterToContinue();
 	void displayHeader(int shift, int customer, double starRating);
+	bool payUtilities(int shift);
+	void gameOver(int shiftsSurvived);
 private:
 	std::string order;
 	double cashTotal = 0;
 	double shiftTotal = 0;
+	utilities utilities;
 };

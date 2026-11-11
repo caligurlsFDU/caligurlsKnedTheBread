@@ -8,17 +8,17 @@ using namespace std;
 static random_device rd;
 static mt19937 gen(rd());
 // Generates a random cost between min and max (inclusive) with two decimal places
-double generateRandomCost(int min, int max)
+double generateRandomCost(double min, double max)
 {
-	uniform_real_distribution<int> dist(min * 100, max * 100);
-	return dist(gen) / 100.0;
+    uniform_int_distribution<int> dist(static_cast<int>(min * 100), static_cast<int>(max * 100));
+    return dist(gen) / 100.0;
 }
 utilities::utilities()
 {
 }
 void utilities::generateCosts(int shift)
 {
-	rent = generateRandomCost(15, 30);
+	rent = generateRandomCost(5, 10);
 
     water = 0.0;
     electricity = 0.0;
@@ -27,12 +27,12 @@ void utilities::generateCosts(int shift)
 	groceries = 0.0;
 	miscellaneous = 0.0;
 
-    if (shift >= 2) water = generateRandomCost(8, 20);
-    if (shift >= 3) electricity = generateRandomCost(15, 30);
-    if (shift >= 4) gas = generateRandomCost(12, 25);
-    if (shift >= 5) internet = generateRandomCost(8, 18);
-    if (shift >= 6) groceries = generateRandomCost(18, 35);
-    if (shift >= 7) miscellaneous = generateRandomCost(5, 20);
+    if (shift >= 2) water = generateRandomCost(5, 10);
+    if (shift >= 3) electricity = generateRandomCost(5, 10);
+    if (shift >= 4) gas = generateRandomCost(5, 10);
+    if (shift >= 5) internet = generateRandomCost(5, 10);
+    if (shift >= 6) groceries = generateRandomCost(8, 10);
+    if (shift >= 7) miscellaneous = generateRandomCost(5, 10);
 }
 
 double utilities::getRent() const
@@ -72,41 +72,37 @@ void utilities::displayBreakdown() const
 {
 	cout << fixed << setprecision(2);
     cout << "╔══════════════════════════════════════╗\n";
-    cout << "║          K N E D   T H E   B R E A D ║\n";
-    cout << "║           BAKERY UTILITY BILL        ║\n";
+    cout << "║     K N E D   T H E   B R E A D      ║\n";
+    cout << "║         BAKERY UTILITY BILL          ║\n";
     cout << "╠══════════════════════════════════════╣\n";
     cout << "║                                      ║\n";
     cout << "║  BILL SUMMARY                        ║\n";
     cout << "║  ----------------------------------  ║\n";
-    cout << "╔══════════════════════════════════════╗\n";
-    cout << "║          K N E D   T H E   B R E A D ║\n";
-    cout << "║           BAKERY UTILITY BILL        ║\n";
-    cout << "╠══════════════════════════════════════╣\n";
-    cout << "║  Rent:                 $" << setw(8) << rent << "       ║\n";
+    cout << "║  Rent:                 $" << setw(6) << rent << "       ║\n";
 
     if (water > 0)
-        cout << "║  Water:                $" << setw(8) << water << "       ║\n";
+        cout << "║  Water:                $" << setw(6) << water << "       ║\n";
 
     if (electricity > 0)
-        cout << "║  Electricity:          $" << setw(8) << electricity << "       ║\n";
+        cout << "║  Electricity:          $" << setw(6) << electricity << "       ║\n";
 
     if (gas > 0)
-        cout << "║  Gas:                  $" << setw(8) << gas << "       ║\n";
+        cout << "║  Gas:                  $" << setw(6) << gas << "       ║\n";
 
     if (internet > 0)
-        cout << "║  Internet:             $" << setw(8) << internet << "       ║\n";
+        cout << "║  Internet:             $" << setw(6) << internet << "       ║\n";
 
     if (groceries > 0)
-        cout << "║  Groceries:            $" << setw(8) << groceries << "       ║\n";
+        cout << "║  Groceries:            $" << setw(6) << groceries << "       ║\n";
 
     if (miscellaneous > 0)
-        cout << "║  Miscellaneous:        $" << setw(8) << miscellaneous << "       ║\n";
+        cout << "║  Miscellaneous:        $" << setw(6) << miscellaneous << "       ║\n";
 
-    cout << "╠══════════════════════════════════════╣\n";
-    cout << "║  TOTAL AMOUNT DUE:     $" << setw(8) << getTotalCost() << "       ║\n";
+    //cout << "╠══════════════════════════════════════╣\n";
+    cout << "║  TOTAL AMOUNT DUE:     $" << setw(6) << getTotalCost() << "       ║\n";
     cout << "╠══════════════════════════════════════╣\n";      
     cout << "║                                      ║\n";
-    cout << "║       THANK YOU FOR YOUR BUSINESS!   ║\n";
+    cout << "║     THANK YOU FOR YOUR BUSINESS!     ║\n";
     cout << "║                                      ║\n";
     cout << "╚══════════════════════════════════════╝\n";
 }
