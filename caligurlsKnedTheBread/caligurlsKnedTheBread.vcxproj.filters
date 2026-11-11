@@ -54,7 +54,10 @@
     <ClCompile Include="orderCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-      </ItemGroup>
+    <ClCompile Include="OrderGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menu.h">
       <Filter>Header Files</Filter>
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="shop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OrderGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

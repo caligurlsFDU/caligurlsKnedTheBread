@@ -149,6 +149,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="orderCommand.cpp" />
+    <ClCompile Include="OrderGenerator.cpp" />
     <ClCompile Include="sandwich.cpp" />
     <ClCompile Include="shift.cpp" />
     <ClCompile Include="shiftConfig.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="ingredients.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="orderCommand.h" />
+    <ClInclude Include="OrderGenerator.h" />
     <ClInclude Include="sandwich.h" />
     <ClInclude Include="shift.h" />
     <ClInclude Include="shiftConfig.h" />
