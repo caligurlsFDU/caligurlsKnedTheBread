@@ -47,6 +47,12 @@ private:
     static constexpr int VEGGIE_MAX = 2;
     static constexpr int CONDIMENT_MAX = 1;
 
+    static constexpr int BREAD_CHANCE = 100;
+    static constexpr int MEAT_CHANCE = 100;
+    static constexpr int CHEESE_CHANCE = 100;
+    static constexpr int VEGGIE_CHANCE = 50;
+    static constexpr int CONDIMENT_CHANCE = 20;
+
     const ingredientBook& book;
     std::mt19937 rng;
     std::set<std::string> usedSignatures;
