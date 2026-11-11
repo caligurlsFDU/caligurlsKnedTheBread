@@ -143,13 +143,17 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="category.cpp" />
     <ClCompile Include="customer.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="ingredientBook.cpp" />
+    <ClCompile Include="ingredientData.cpp" />
     <ClCompile Include="ingredients.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
+    <ClCompile Include="order.cpp" />
     <ClCompile Include="orderCommand.cpp" />
-    <ClCompile Include="OrderGenerator.cpp" />
+    <ClCompile Include="orderGenerator.cpp" />
     <ClCompile Include="sandwich.cpp" />
     <ClCompile Include="shift.cpp" />
     <ClCompile Include="shiftConfig.cpp" />
@@ -159,12 +163,16 @@
     <ClCompile Include="shop.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="category.h" />
     <ClInclude Include="customer.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="ingredientBook.h" />
+    <ClInclude Include="ingredientData.h" />
     <ClInclude Include="ingredients.h" />
     <ClInclude Include="menu.h" />
+    <ClInclude Include="order.h" />
     <ClInclude Include="orderCommand.h" />
-    <ClInclude Include="OrderGenerator.h" />
+    <ClInclude Include="orderGenerator.h" />
     <ClInclude Include="sandwich.h" />
     <ClInclude Include="shift.h" />
     <ClInclude Include="shiftConfig.h" />
