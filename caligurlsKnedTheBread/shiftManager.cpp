@@ -8,17 +8,23 @@
 #include <iostream>
 #include <limits>
 
+
 void shiftManager::runAllShifts(Game& game)
 {
 	int choice = 1;
 
 	while (choice == 1)
 	{
-		orderBook = Customer::createCustomers();
 		customerIndex = 0;
 
 		for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 		{
+			const int customersPerShift = 7;
+
+			game.getOrderGenerator().startNewShift();
+			orderBook = Customer::createCustomers(game.getOrderGenerator(), customersPerShift);
+			customerIndex = 0;
+
 			runShift(shift, game);
 
 			//end go game display

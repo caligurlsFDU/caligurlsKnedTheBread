@@ -18,15 +18,23 @@ using namespace std;
 constexpr int removeIngredientOption = 0;
 constexpr int finishSandwichOption = 11;
 
+Game::Game() : generator(book)
+{
+}
+
 // startGame
 // Entry point for a play session. Hands control to the shift manager, which
 // runs every shift and calls back into this Game (via *this) whenever a
 // customer needs to be served.
 void Game::startGame()
 {
+	cashTotal = 0.0;
+	shiftTotal = 0.0;
+	generator.startNewGame();      // reseeds the RNG so each playthrough differs
 	shiftManager shiftMgr;
 	shiftMgr.runAllShifts(*this);
 }
+
 void Game::clearScreen() 
 {
 	system("cls");
