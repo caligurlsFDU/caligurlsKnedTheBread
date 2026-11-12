@@ -249,6 +249,7 @@ double Game::serveCustomer(Customer& customer, int shift)
 	void Game::giveCash(double amount)
 	{
 		shiftTotal += amount;
+		cashTotal += amount;
 	}
 	double Game::getCashTotal() const
 	{
@@ -264,5 +265,65 @@ double Game::serveCustomer(Customer& customer, int shift)
 	}
 	void Game::finishShift()
 	{
-		cashTotal += shiftTotal;
+	}
+
+	bool Game::payUtilities(int shift, double averageRating)
+	{
+		utilities.generateCosts(shift);
+		double totalCost = utilities.getTotalCost();
+		clearScreen();
+		displayHeader(shift, 0, averageRating);
+		utilities.displayBreakdown();
+		cout << fixed << setprecision(2);
+		cout << "\nBalance before utilities: $" << cashTotal << "\n";
+		// Subtract the utility costs
+		cashTotal -= totalCost;
+		cout << "Remaining Balance: $" << cashTotal << "\n";
+		if (cashTotal < 0)
+		{
+			cout << "\nYou don't have enough money to pay your utilities!\n";
+			cout << "Your bakery is going out of business!\n";
+		}
+		else
+		{
+			cout << "\nUtilities paid successfully!\n";
+		}
+		pressEnterToContinue();
+		return cashTotal >= 0;
+	}
+	void Game::gameOver(int shiftsSurvived)
+	{
+		clearScreen();
+
+		cout << "╔══════════════════════════════════════╗\n";
+		cout << "║               GAME OVER              ║\n";
+		cout << "╠══════════════════════════════════════╣\n";
+		cout << "║                                      ║\n";
+		cout << "║   You couldn't pay your bills!       ║\n";
+		cout << "║                                      ║\n";
+		cout << "║   Shifts survived: " << shiftsSurvived << "                 ║\n";
+		cout << "║                                      ║\n";
+		cout << "╠══════════════════════════════════════╣\n";
+		cout << "║   1. Return to Home Screen           ║\n";
+		cout << "║   2. Quit Game                       ║\n";
+		cout << "╚══════════════════════════════════════╝\n";
+		string choice;
+		while (true)
+		{
+			cout << "\nEnter your choice: ";
+			getline(cin, choice);
+
+			if (choice == "1")
+			{
+				return;
+			}
+			else if (choice == "2")
+			{
+				exit(0);
+			}
+			else
+			{
+				cout << "Invalid choice. Please enter 1 or 2.\n";
+			}
+		}
 	}

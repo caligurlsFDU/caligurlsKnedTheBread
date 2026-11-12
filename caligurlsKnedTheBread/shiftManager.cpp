@@ -26,7 +26,11 @@ void shiftManager::runAllShifts(Game& game)
 			customerIndex = 0;
 
 			runShift(shift, game);
-
+			if (!game.payUtilities(shift, currentShift.getAverageRating()))
+			{
+				game.gameOver(shift);
+				return;
+			}
 			//end go game display
 			if (shift == shiftConfig::getTotalShifts())
 			{

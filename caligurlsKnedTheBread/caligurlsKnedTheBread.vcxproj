@@ -161,6 +161,7 @@
     <ClCompile Include="shiftScreens.cpp" />
     <ClCompile Include="shiftState.cpp" />
     <ClCompile Include="shop.cpp" />
+    <ClCompile Include="utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="category.h" />
@@ -180,6 +181,7 @@
     <ClInclude Include="shiftScreens.h" />
     <ClInclude Include="shiftState.h" />
     <ClInclude Include="shop.h" />
+    <ClInclude Include="utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

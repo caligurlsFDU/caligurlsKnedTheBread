@@ -9,9 +9,9 @@
 std::string shiftScreens::getShiftOverText(int shift, double averageRating)
 {
 	std::ostringstream text;
-	text << "Shift Over\n"
-		<< "Shift " << shift
-		<< "\nAverage Rating: " << std::fixed << std::setprecision(1) << averageRating << " / 5\n";
+	text << "Shift Over\n";
+		//<< "Shift " << shift
+		//<< "\nAverage Rating: " << std::fixed << std::setprecision(1) << averageRating << " / 5\n";
 	return text.str();
 }
 
