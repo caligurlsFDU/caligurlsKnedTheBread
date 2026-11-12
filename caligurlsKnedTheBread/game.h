@@ -10,14 +10,16 @@ public:
 	double serveCustomer(Customer& customer);
 	double getCashTotal() const;
 	double getShiftTotal() const;
+	double getAverageRating() const;
 	void giveCash(double cashEarned);
 	void resetShiftTotal();
 	void finishShift();
 	void clearScreen();
 	void pressEnterToContinue();
 	void displayHeader(int shift, int customer, double starRating);
-	bool payUtilities(int shift);
+	bool payUtilities(int shift, double averageRating);
 	void gameOver(int shiftsSurvived);
+
 private:
 	std::string order;
 	double cashTotal = 0;

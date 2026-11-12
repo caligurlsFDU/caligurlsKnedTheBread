@@ -178,10 +178,9 @@ double Game::serveCustomer(Customer& customer)
 	}
 	void Game::finishShift()
 	{
-		cashTotal += shiftTotal;
 	}
 
-	bool Game::payUtilities(int shift)
+	bool Game::payUtilities(int shift, double averageRating)
 	{
 		utilities.generateCosts(shift);
 		double totalCost = utilities.getTotalCost();
@@ -190,7 +189,7 @@ double Game::serveCustomer(Customer& customer)
 			return false;
 		}
 		clearScreen();
-		displayHeader(shift, 0, 0.0);
+		displayHeader(shift, 0, averageRating);
 		utilities.displayBreakdown();
 		cout << fixed << setprecision(2);
 		cout << "\nMoney available to pay utilities: $" << cashTotal << "\n";

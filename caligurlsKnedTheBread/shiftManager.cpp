@@ -26,7 +26,7 @@ void shiftManager::runAllShifts(Game& game)
 		for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 		{
 			runShift(shift, game);
-			if (!game.payUtilities(shift))
+			if (!game.payUtilities(shift, currentShift.getAverageRating()))
 			{
 				game.gameOver(shift);
 				return;

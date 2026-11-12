@@ -78,28 +78,28 @@ void utilities::displayBreakdown() const
     cout << "║                                      ║\n";
     cout << "║  BILL SUMMARY                        ║\n";
     cout << "║  ----------------------------------  ║\n";
-    cout << "║  Rent:                 $" << setw(6) << rent << "       ║\n";
+    cout << "║  Rent:                 -$" << setw(5) << rent << "       ║\n";
 
     if (water > 0)
-        cout << "║  Water:                $" << setw(6) << water << "       ║\n";
+        cout << "║  Water:                -$" << setw(5) << water << "       ║\n";
 
     if (electricity > 0)
-        cout << "║  Electricity:          $" << setw(6) << electricity << "       ║\n";
+        cout << "║  Electricity:          -$" << setw(5) << electricity << "       ║\n";
 
     if (gas > 0)
-        cout << "║  Gas:                  $" << setw(6) << gas << "       ║\n";
+        cout << "║  Gas:                  -$" << setw(5) << gas << "       ║\n";
 
     if (internet > 0)
-        cout << "║  Internet:             $" << setw(6) << internet << "       ║\n";
+        cout << "║  Internet:             -$" << setw(5) << internet << "       ║\n";
 
     if (groceries > 0)
-        cout << "║  Groceries:            $" << setw(6) << groceries << "       ║\n";
+        cout << "║  Groceries:            -$" << setw(5) << groceries << "       ║\n";
 
     if (miscellaneous > 0)
-        cout << "║  Miscellaneous:        $" << setw(6) << miscellaneous << "       ║\n";
+        cout << "║  Miscellaneous:        -$" << setw(5) << miscellaneous << "       ║\n";
 
     //cout << "╠══════════════════════════════════════╣\n";
-    cout << "║  TOTAL AMOUNT DUE:     $" << setw(6) << getTotalCost() << "       ║\n";
+    cout << "║  TOTAL AMOUNT DUE:     -$" << setw(5) << getTotalCost() << "       ║\n";
     cout << "╠══════════════════════════════════════╣\n";      
     cout << "║                                      ║\n";
     cout << "║     THANK YOU FOR YOUR BUSINESS!     ║\n";
