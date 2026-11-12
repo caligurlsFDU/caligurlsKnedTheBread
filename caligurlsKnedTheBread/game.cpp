@@ -184,19 +184,25 @@ double Game::serveCustomer(Customer& customer)
 	{
 		utilities.generateCosts(shift);
 		double totalCost = utilities.getTotalCost();
-		if (cashTotal < totalCost)
-		{
-			return false;
-		}
 		clearScreen();
 		displayHeader(shift, 0, averageRating);
 		utilities.displayBreakdown();
 		cout << fixed << setprecision(2);
-		cout << "\nMoney available to pay utilities: $" << cashTotal << "\n";
+		cout << "\nBalance before utilities: $" << cashTotal << "\n";
+		// Subtract the utility costs
 		cashTotal -= totalCost;
-		cout << "Utilities paid successfully. Total cost: $" << totalCost << "\n";
+		cout << "Remaining Balance: $" << cashTotal << "\n";
+		if (cashTotal < 0)
+		{
+			cout << "\nYou don't have enough money to pay your utilities!\n";
+			cout << "Your bakery is going out of business!\n";
+		}
+		else
+		{
+			cout << "\nUtilities paid successfully!\n";
+		}
 		pressEnterToContinue();
-		return true;
+		return cashTotal >= 0;
 	}
 	void Game::gameOver(int shiftsSurvived)
 	{
