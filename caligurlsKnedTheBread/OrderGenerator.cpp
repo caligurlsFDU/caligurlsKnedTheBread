@@ -5,7 +5,9 @@
 
 // Constructor: stores a reference to the ingredientBook in the member book.
 orderGenerator::orderGenerator(const ingredientBook& book) : book(book)
-{}
+{
+	startNewGame();
+}
 
 // Starts a new game by initializing the random number generator
 // clears the list of previously generated orders

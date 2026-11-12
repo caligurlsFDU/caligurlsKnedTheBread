@@ -1,4 +1,5 @@
 #pragma once
+
 /// @class orderGenerator
 /// @brief Builds random orders using the riddle guide's sentence template and order size limits
 /// Stateful class, one instance created when the program starts
@@ -18,6 +19,8 @@
 /// -std::vector<PickedItem> pickFromCategory(Category category, int count) - picks count different ingredients
 /// -std::string buildSentence(const std::vector<PickedItem>& items) const - turns picks into the order sentence
 /// -int randomBetween(int low, int high) - random int, both ends included
+
+
 
 #include <random>
 #include <set>
