@@ -19,7 +19,7 @@ void shiftManager::runAllShifts(Game& game)
 
 		for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 		{
-			const int customersPerShift = 7;
+			const int customersPerShift = shiftConfig::getCustomerCount(shift);
 
 			game.getOrderGenerator().startNewShift();
 			orderBook = Customer::createCustomers(game.getOrderGenerator(), customersPerShift);
@@ -29,13 +29,6 @@ void shiftManager::runAllShifts(Game& game)
 			if (!game.payUtilities(shift, currentShift.getAverageRating()))
 			{
 				game.gameOver(shift);
-				return;
-			}
-			//end go game display
-			if (shift == shiftConfig::getTotalShifts())
-			{
-				std::cout << "Congrats you completed all three shifts in the demo";
-				std::cout << "Thanks for playing kned the bread";
 				return;
 			}
 
