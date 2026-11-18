@@ -3,6 +3,7 @@
 #include "shiftManager.h"
 #include "ingredients.h"
 #include "sandwich.h"
+#include "orderCommand.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,7 +12,8 @@
 #include <cstdlib>
 #include <limits>
 #include <iomanip>
-#include "orderCommand.h"
+#include <chrono>
+
 
 using namespace std;
 
@@ -80,6 +82,8 @@ double Game::serveCustomer(Customer& customer, int shift)
 	{
 		cout << "Type an ingredient name to add it. Type 'order up' when finished. Type 'bin' to throw an ingredient away.\n";
 	}
+
+	auto start = std::chrono::steady_clock::now();
 
 	bool sandwichMade = false;
 	while (!sandwichMade)
@@ -224,6 +228,9 @@ double Game::serveCustomer(Customer& customer, int shift)
 		}
 	}
 
+	std::chrono::duration<double> elapsed = std::chrono::steady_clock::now() - start;
+	double seconds = elapsed.count();
+
 	// check if completed sandwich matches requested sandwich
 	if (sandwich.matchesOrder(correctIngredients))
 	{
@@ -241,6 +248,7 @@ double Game::serveCustomer(Customer& customer, int shift)
 	double stars = sandwich.orderStars(correctIngredients);
 	double cashEarned = sandwich.giveCash(correctIngredients);
 	giveCash(cashEarned);
+	cout << "\nIt took you " << seconds << " seconds to make this sandwich.\n";
 	cout << "\nYou earned " << stars << " / 5 stars\n\n";
 	cout << "Money earned this order: $" << fixed << setprecision(2) << cashEarned << "\n\n";
 
