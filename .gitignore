@@ -10,6 +10,10 @@
 *.userosscache
 *.sln.docstates
 
+“#” Doxygen build output  (no double quotes, Notion forced these here)
+html/
+latex/
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
