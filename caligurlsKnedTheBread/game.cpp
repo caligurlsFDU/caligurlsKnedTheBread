@@ -247,10 +247,32 @@ double Game::serveCustomer(Customer& customer, int shift)
 
 	double stars = sandwich.orderStars(correctIngredients);
 	double cashEarned = sandwich.giveCash(correctIngredients);
-	giveCash(cashEarned);
+	double cashPlusBonus = 0;
+	double timeMultiplier = 1;
+	string orderBonus = " ";
+
+	if (seconds <= 15)
+	{
+		timeMultiplier = 1.5;
+		orderBonus = " (Quick!) ";
+	}
+	else if (seconds >= 30)
+	{
+		timeMultiplier = 0.75;
+		orderBonus = " (Late... ) ";
+	}
+	else
+	{
+		timeMultiplier = 1;
+		orderBonus = " (On Time...)";
+	}
+
+	giveCash(cashPlusBonus);
 	cout << "\nIt took you " << seconds << " seconds to make this sandwich.\n";
 	cout << "\nYou earned " << stars << " / 5 stars\n\n";
-	cout << "Money earned this order: $" << fixed << setprecision(2) << cashEarned << "\n\n";
+	cashPlusBonus = cashEarned * timeMultiplier;
+
+	cout << "Money earned this order: Base:" << fixed << setprecision(2) << cashEarned << " x " << timeMultiplier <<  orderBonus << " = " << cashPlusBonus << "\n\n";
 
 	return stars;
 }
