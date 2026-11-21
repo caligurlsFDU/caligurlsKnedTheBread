@@ -267,10 +267,11 @@ double Game::serveCustomer(Customer& customer, int shift)
 		orderBonus = " (On Time...)";
 	}
 
+	cashPlusBonus = cashEarned * timeMultiplier;
 	giveCash(cashPlusBonus);
 	cout << "\nIt took you " << seconds << " seconds to make this sandwich.\n";
 	cout << "\nYou earned " << stars << " / 5 stars\n\n";
-	cashPlusBonus = cashEarned * timeMultiplier;
+	
 
 	cout << "Money earned this order: Base:" << fixed << setprecision(2) << cashEarned << " x " << timeMultiplier <<  orderBonus << " = " << cashPlusBonus << "\n\n";
 
