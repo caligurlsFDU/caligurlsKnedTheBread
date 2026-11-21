@@ -251,21 +251,23 @@ double Game::serveCustomer(Customer& customer, int shift)
 	double timeMultiplier = 1;
 	string orderBonus = " ";
 
-	if (seconds <= 15)
-	{
-		timeMultiplier = 1.5;
-		orderBonus = " (Quick!) ";
-	}
-	else if (seconds >= 30)
-	{
-		timeMultiplier = 0.75;
-		orderBonus = " (Late... ) ";
-	}
-	else
-	{
-		timeMultiplier = 1;
-		orderBonus = " (On Time...)";
-	}
+	if (stars != 0)
+	{ 
+		if (seconds <= 15)
+		{
+			timeMultiplier = 1.5;
+			orderBonus = " (Quick!)";
+		}
+		else if (seconds >= 30)
+		{
+			timeMultiplier = 0.75;
+			orderBonus = " (Late...)";
+		}
+		else
+		{
+			timeMultiplier = 1;
+			orderBonus = " (On Time...)";
+		}
 
 	cashPlusBonus = cashEarned * timeMultiplier;
 	giveCash(cashPlusBonus);
@@ -273,8 +275,13 @@ double Game::serveCustomer(Customer& customer, int shift)
 	cout << "\nYou earned " << stars << " / 5 stars\n\n";
 	
 
-	cout << "Money earned this order: Base:" << fixed << setprecision(2) << cashEarned << " x " << timeMultiplier <<  orderBonus << " = " << cashPlusBonus << "\n\n";
-
+		cout << "Money earned this order: Base: $" << fixed << setprecision(2) << cashEarned << " x " << timeMultiplier <<  orderBonus << " = $" << cashPlusBonus << "\n\n";
+	}
+	else
+	{
+		cout << "\nYou earned " << stars << " / 5 stars\n\n";
+		cout << "You made no money this order :(\n\n";
+	}
 	return stars;
 }
 	void Game::giveCash(double amount)
