@@ -8,6 +8,7 @@ void Shift::startShift(int shift)
 	// Validate the shift number
 	if (!shiftConfig::isValidShift(shift))
 	{
+		//bool for pass or fail
 		return;
 	}
 	shiftNumber = shift;
