@@ -269,7 +269,7 @@ double Game::serveCustomer(Customer& customer, int shift)
 			orderBonus = " (On Time...)";
 		}
 
-	//pushing this
+	//merging this
 	cashPlusBonus = cashEarned * timeMultiplier;
 	giveCash(cashPlusBonus);
 	cout << "\nIt took you " << seconds << " seconds to make this sandwich.\n";
