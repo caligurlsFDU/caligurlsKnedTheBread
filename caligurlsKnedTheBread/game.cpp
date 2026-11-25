@@ -308,7 +308,6 @@ double Game::serveCustomer(Customer& customer, int shift)
 
 	bool Game::payUtilities(int shift, double averageRating)
 	{
-		utilities.generateCosts(shift);
 		double totalCost = utilities.getTotalCost();
 		clearScreen();
 		displayHeader(shift, 0, averageRating);
@@ -365,4 +364,11 @@ double Game::serveCustomer(Customer& customer, int shift)
 				cout << "Invalid choice. Please enter 1 or 2.\n";
 			}
 		}
+	}
+	void Game::PreviewUtilitiesBill(int shift) {
+		utilities.generateCosts(shift);
+		clearScreen();
+		displayHeader(shift, 0, 0.0);
+		utilities.displayPreviewBreakdown();
+		pressEnterToContinue();
 	}

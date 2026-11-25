@@ -24,6 +24,7 @@ void shiftManager::runAllShifts(Game& game)
 			game.getOrderGenerator().startNewShift();
 			orderBook = Customer::createCustomers(game.getOrderGenerator(), customersPerShift);
 			customerIndex = 0;
+			game.PreviewUtilitiesBill(shift);
 
 			runShift(shift, game);
 			if (!game.payUtilities(shift, currentShift.getAverageRating()))

@@ -15,6 +15,7 @@ public:
 	double getMiscellaneous() const;
 	double getTotalCost() const;
 	void displayBreakdown() const;
+	void displayPreviewBreakdown() const;
 
 private:
 	double rent = 0.0;

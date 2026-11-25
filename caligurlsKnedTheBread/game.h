@@ -23,6 +23,7 @@ public:
 	void displayHeader(int shift, int customer, double starRating);
 	bool payUtilities(int shift, double averageRating);
 	void gameOver(int shiftsSurvived);
+	void PreviewUtilitiesBill(int shift);
 
 private:
 	ingredientBook book;

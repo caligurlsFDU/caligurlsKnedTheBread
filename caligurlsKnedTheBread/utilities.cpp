@@ -106,3 +106,35 @@ void utilities::displayBreakdown() const
     cout << "║                                      ║\n";
     cout << "╚══════════════════════════════════════╝\n";
 }
+
+void utilities::displayPreviewBreakdown() const
+{
+	cout << fixed << setprecision(2);
+	cout << "╔══════════════════════════════════════╗\n";
+	cout << "║     K N E D   T H E   B R E A D      ║\n";
+	cout << "║         BAKERY UTILITY BILL          ║\n";
+	cout << "╠══════════════════════════════════════╣\n";
+	cout << "║                                      ║\n";
+	cout << "║  BILL SUMMARY                        ║\n";
+	cout << "║  ----------------------------------  ║\n";
+	cout << "║  Rent:                 $" << setw(5) << rent << "        ║\n";
+	if (water > 0)
+		cout << "║  Water:                $" << setw(5) << water << "        ║\n";
+	if (electricity > 0)
+		cout << "║  Electricity:          $" << setw(5) << electricity << "        ║\n";
+	if (gas > 0)
+		cout << "║  Gas:                  $" << setw(5) << gas << "        ║\n";
+	if (internet > 0)
+		cout << "║  Internet:             $" << setw(5) << internet << "        ║\n";
+	if (groceries > 0)
+		cout << "║  Groceries:            $" << setw(5) << groceries << "        ║\n";
+	if (miscellaneous > 0)
+		cout << "║  Miscellaneous:        $" << setw(5) << miscellaneous << "        ║\n";
+	//cout << "╠══════════════════════════════════════╣\n";
+	cout << "║  TOTAL AMOUNT DUE:     $" << setw(5) << getTotalCost() << "        ║\n";
+	cout << "╠══════════════════════════════════════╣\n";
+	cout << "║                                      ║\n";
+	cout << "║				       ║\n";
+	cout << "║                                      ║\n";
+	cout << "╚══════════════════════════════════════╝\n";
+}
