@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="category.cpp" />
     <ClCompile Include="customer.cpp" />
+    <ClCompile Include="dailyEvent.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="ingredientBook.cpp" />
     <ClCompile Include="ingredientData.cpp" />
@@ -166,6 +167,7 @@
   <ItemGroup>
     <ClInclude Include="category.h" />
     <ClInclude Include="customer.h" />
+    <ClInclude Include="dailyEvent.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="ingredientBook.h" />
     <ClInclude Include="ingredientData.h" />
