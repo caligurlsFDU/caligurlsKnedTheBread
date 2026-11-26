@@ -11,7 +11,7 @@ public:
 	Game();
 	orderGenerator& getOrderGenerator() { return generator; }
 	void startGame();
-	double serveCustomer(Customer& customer, int shift);
+	double serveCustomer(Customer& customer, int shift, double payMultiplier);
 	double getCashTotal() const;
 	double getShiftTotal() const;
 	double getAverageRating() const;
@@ -20,8 +20,9 @@ public:
 	void finishShift();
 	void clearScreen();
 	void pressEnterToContinue();
-	void displayHeader(int shift, int customer, double starRating);
-	bool payUtilities(int shift, double averageRating);
+	void displayHeader(int shift, int customer, double starRating,
+		const std::string& eventName);
+	bool payUtilities(int shift, double averageRating, const std::string& eventName);
 	void gameOver(int shiftsSurvived);
 
 private:

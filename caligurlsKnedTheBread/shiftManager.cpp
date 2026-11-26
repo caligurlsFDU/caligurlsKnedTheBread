@@ -8,71 +8,81 @@
 #include <iostream>
 #include <limits>
 
-
 void shiftManager::runAllShifts(Game& game)
 {
-	int choice = 1;
-
-	while (choice == 1)
+	for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
 	{
+		events.rollEvent(shift);
+
+		const int customersPerShift =
+			shiftConfig::getCustomerCount(shift) *
+			events.getCurrentEvent().customerMultiplier;
+
+		game.getOrderGenerator().startNewShift();
+		orderBook = Customer::createCustomers(
+			game.getOrderGenerator(), customersPerShift);
+
 		customerIndex = 0;
 
-		for (int shift = 1; shift <= shiftConfig::getTotalShifts(); shift++)
+		runShift(shift, game);
+
+		if (!game.payUtilities(shift, currentShift.getAverageRating(),
+			events.getCurrentEvent().name))
 		{
-			const int customersPerShift = shiftConfig::getCustomerCount(shift);
+			game.gameOver(shift);
+			return;
+		}
 
-			game.getOrderGenerator().startNewShift();
-			orderBook = Customer::createCustomers(game.getOrderGenerator(), customersPerShift);
-			customerIndex = 0;
+		int choice = showShiftEnd(game);
 
-			runShift(shift, game);
-			if (!game.payUtilities(shift, currentShift.getAverageRating()))
-			{
-				game.gameOver(shift);
-				return;
-			}
-
-			choice = showShiftEnd(game);
-
-			if (choice == 2) //shop
-			{
-				showShop(game);
-			}
-			else if (choice == 3) // exit game
-			{
-				std::cout << "Exiting game. Thank you for playing!\n";
-				return;
-			}
+		if (choice == 2)
+		{
+			showShop(game);
+		}
+		else if (choice == 3)
+		{
+			std::cout << "Exiting game. Thank you for playing!\n";
+			return;
 		}
 	}
 }
-
-
 void shiftManager::runShift(int shift, Game& game)
 {
 	game.resetShiftTotal();
 	currentShift.startShift(shift);
 	game.clearScreen();
+
+	events.announceEvent();
+
 	int customerNumber = 1;
 
-	//The existing game logic for serving customers would go here. 
-	//For now, we will simulate serving customers with a simple loop.
-
-	while (!currentShift.isShiftOver() && customerIndex < static_cast<int>(orderBook.size()))
+	while (!currentShift.isShiftOver() &&
+		customerIndex < static_cast<int>(orderBook.size()))
 	{
-		game.displayHeader(currentShift.getShiftNumber(), customerNumber, currentShift.getAverageRating());
-		double rating = game.serveCustomer(orderBook[customerIndex], shift);
+		game.displayHeader(
+			currentShift.getShiftNumber(),
+			customerNumber,
+			currentShift.getAverageRating(),
+			events.getCurrentEvent().name
+		);
+		double rating = game.serveCustomer(
+			orderBook[customerIndex],
+			shift,
+			events.getCurrentEvent().payMultiplier
+		);
+
 		currentShift.serveCustomer(rating);
 		customerIndex++;
 		customerNumber++;
-		//pause
+
 		game.pressEnterToContinue();
 	}
+
 	game.finishShift();
 }
 int shiftManager::showShiftEnd(Game & game)
 {
-	game.displayHeader(currentShift.getShiftNumber(), 0, currentShift.getAverageRating());
+	game.displayHeader(currentShift.getShiftNumber(), 0, currentShift.getAverageRating(), events.getCurrentEvent().name);
 
 	std::cout << screens.getShiftOverText(currentShift.getShiftNumber(), currentShift.getAverageRating());
 	std::cout << std::fixed << std::setprecision(2);
@@ -91,7 +101,7 @@ int shiftManager::showShiftEnd(Game & game)
 void shiftManager::showShop(Game& game)
 {
 	game.clearScreen();
-	game.displayHeader(currentShift.getShiftNumber(), 0, currentShift.getAverageRating());
+	game.displayHeader(currentShift.getShiftNumber(), 0, currentShift.getAverageRating(), events.getCurrentEvent().name);
 	int choice;
 	std::cout << std::fixed << std::setprecision(2);
 	std::cout << screens.getShopText();

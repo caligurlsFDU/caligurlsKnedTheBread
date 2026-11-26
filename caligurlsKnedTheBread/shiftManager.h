@@ -4,6 +4,7 @@
 #include "shift.h"
 #include "shiftScreens.h"
 #include "customer.h"
+#include "eventManager.h"
 #include <vector>
 class Game;
 class shiftManager
@@ -18,6 +19,7 @@ public:
 private:
 	Shift currentShift;
 	shiftScreens screens;
+	eventManager events;
 	std::vector<Customer> orderBook;
 	int customerIndex = 0;
 };

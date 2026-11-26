@@ -49,7 +49,7 @@ void Game::pressEnterToContinue()
 	getline(cin, input);
 	clearScreen();
 }
-void Game::displayHeader(int shift, int customer, double starRating)
+void Game::displayHeader(int shift, int customer, double starRating, const std::string& eventName)
 {
 	cout << "╔══════════════════════════════════════╗\n";
 	cout << "║           Kned the Bread             ║\n";
@@ -58,6 +58,7 @@ void Game::displayHeader(int shift, int customer, double starRating)
 	cout << "║  Customer: " << left << setw(26) << customer << "║\n";
 	cout << "║  Cash Total: $" << left << setw(23) << fixed << setprecision(2) << cashTotal << "║\n";
 	cout << "║  Average Star Rating: " << left << setw(15) << fixed << setprecision(2) << starRating << "║\n";
+	cout << "║  Event: " << left << setw(26) << eventName << "║\n";
 	cout << "╚══════════════════════════════════════╝" << endl;
 }
 // serveCustomer
@@ -66,7 +67,7 @@ void Game::displayHeader(int shift, int customer, double starRating)
 //   2. Let the player add/remove ingredients until they choose "Finish".
 //   3. Compare the finished sandwich to the order and score it.
 // Returns the star rating (out of 5) so the shift can track its average.
-double Game::serveCustomer(Customer& customer, int shift)
+double Game::serveCustomer(Customer& customer, int shift, double payMultiplier)
 {
 	const bool isFirstShift = (shift == 1);
 	const vector<string> correctIngredients = customer.getCorrectSandwich();
@@ -271,6 +272,7 @@ double Game::serveCustomer(Customer& customer, int shift)
 
 	//merging this
 	cashPlusBonus = cashEarned * timeMultiplier;
+	cashPlusBonus *= payMultiplier;
 	giveCash(cashPlusBonus);
 	cout << "\nIt took you " << seconds << " seconds to make this sandwich.\n";
 	cout << "\nYou earned " << stars << " / 5 stars\n\n";
@@ -306,12 +308,12 @@ double Game::serveCustomer(Customer& customer, int shift)
 	{
 	}
 
-	bool Game::payUtilities(int shift, double averageRating)
+	bool Game::payUtilities(int shift, double averageRating, const std::string& eventName)
 	{
 		utilities.generateCosts(shift);
 		double totalCost = utilities.getTotalCost();
 		clearScreen();
-		displayHeader(shift, 0, averageRating);
+		displayHeader(shift, 0, averageRating, eventName);
 		utilities.displayBreakdown();
 		cout << fixed << setprecision(2);
 		cout << "\nBalance before utilities: $" << cashTotal << "\n";
