@@ -11,7 +11,7 @@ public:
 	Game();
 	orderGenerator& getOrderGenerator() { return generator; }
 	void startGame();
-	double serveCustomer(Customer& customer, int shift, double payMultiplier);
+	double serveCustomer(Customer& customer, int shift, double payMultiplier, bool allOrNothing);
 	double getCashTotal() const;
 	double getShiftTotal() const;
 	double getAverageRating() const;

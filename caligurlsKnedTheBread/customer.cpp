@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <random>
+#include <algorithm>
 #include "customer.h"
 
 using namespace std;
@@ -33,7 +35,11 @@ std::string Customer::getOrder() const
 {
 	return orderPrompt;
 }
-
+void Customer::scrambleOrder()
+{
+	std::shuffle(orderPrompt.begin(), orderPrompt.end(),
+		std::mt19937(std::random_device{}()));
+}
 std::vector<std::string> Customer::getCorrectSandwich() const
 {
 	return customerOrder;
@@ -43,18 +49,24 @@ bool Customer::checkOrder(std::vector<std::string> orderToCheck) const
 	return orderToCheck == customerOrder;
 }
 
-vector<Customer> Customer::createCustomers(orderGenerator& generator, int count)
+vector<Customer> Customer::createCustomers(
+	orderGenerator& generator, int count, int minMeats, bool scrambleText)
 {
 	vector<Customer> customers;
 	for (int i = 0; i < count; i++)
 	{
-		order newOrder = generator.generateOrder();
+		order newOrder = generator.generateOrder(minMeats);
 
 		vector<string> realNames;
 		for (const PickedItem& item : newOrder.getItems())
 			realNames.push_back(item.ingredient->realName);
 
 		customers.emplace_back(newOrder.getDisplayText(), realNames);
+
+		if (scrambleText)
+		{
+			customers.back().scrambleOrder();
+		}customers.emplace_back(newOrder.getDisplayText(), realNames);
 	}
 	return customers;
 }

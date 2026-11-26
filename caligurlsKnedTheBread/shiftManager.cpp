@@ -20,7 +20,10 @@ void shiftManager::runAllShifts(Game& game)
 
 		game.getOrderGenerator().startNewShift();
 		orderBook = Customer::createCustomers(
-			game.getOrderGenerator(), customersPerShift);
+			game.getOrderGenerator(),
+			customersPerShift,
+			events.getCurrentEvent().minMeats,
+			events.getCurrentEvent().scrambleText);
 
 		customerIndex = 0;
 
@@ -68,9 +71,9 @@ void shiftManager::runShift(int shift, Game& game)
 		double rating = game.serveCustomer(
 			orderBook[customerIndex],
 			shift,
-			events.getCurrentEvent().payMultiplier
+			events.getCurrentEvent().payMultiplier,
+			events.getCurrentEvent().allOrNothing
 		);
-
 		currentShift.serveCustomer(rating);
 		customerIndex++;
 		customerNumber++;

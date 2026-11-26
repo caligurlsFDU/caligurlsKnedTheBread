@@ -26,7 +26,7 @@ void orderGenerator::startNewShift()
 // Generates a random order using the ingredient categories and their limits/probabilities
 // checks that the order has not already been used during the current shift
 // Builds the riddle sentence using buildSentence()
-order orderGenerator::generateOrder()
+order orderGenerator::generateOrder(int minMeats)
 {
     std::vector<PickedItem> items;
 
@@ -43,7 +43,8 @@ order orderGenerator::generateOrder()
 	// 100% chance of adding one meat.
 	if (randomBetween(1, 100) <= MEAT_CHANCE)
 	{
-		std::vector<PickedItem> meat = pickFromCategory(Category::Meat, 1);
+		int meatCount = std::max(1, minMeats); // Ensure at least one meat is added
+		std::vector<PickedItem> meat = pickFromCategory(Category::Meat, meatCount);
 		items.insert(items.end(), meat.begin(), meat.end());
 	}
 

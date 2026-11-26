@@ -38,7 +38,7 @@ public:
 
     void startNewGame();
     void startNewShift();
-    order generateOrder();
+    order generateOrder(int minMeats = 0);
 
 private:
     std::vector<PickedItem> pickFromCategory(Category category, int count);

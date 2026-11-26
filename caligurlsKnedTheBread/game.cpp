@@ -67,7 +67,7 @@ void Game::displayHeader(int shift, int customer, double starRating, const std::
 //   2. Let the player add/remove ingredients until they choose "Finish".
 //   3. Compare the finished sandwich to the order and score it.
 // Returns the star rating (out of 5) so the shift can track its average.
-double Game::serveCustomer(Customer& customer, int shift, double payMultiplier)
+double Game::serveCustomer(Customer& customer, int shift, double payMultiplier, bool allOrNothing)
 {
 	const bool isFirstShift = (shift == 1);
 	const vector<string> correctIngredients = customer.getCorrectSandwich();
@@ -248,6 +248,11 @@ double Game::serveCustomer(Customer& customer, int shift, double payMultiplier)
 
 	double stars = sandwich.orderStars(correctIngredients);
 	double cashEarned = sandwich.giveCash(correctIngredients);
+	if (allOrNothing && !sandwich.matchesOrder(correctIngredients))
+	{
+		stars = 0;
+		cashEarned = 0;
+	}
 	double cashPlusBonus = 0;
 	double timeMultiplier = 1;
 	string orderBonus = " ";
@@ -311,6 +316,10 @@ double Game::serveCustomer(Customer& customer, int shift, double payMultiplier)
 	bool Game::payUtilities(int shift, double averageRating, const std::string& eventName)
 	{
 		utilities.generateCosts(shift);
+		if (eventName == "BAZAAR BILLS")
+		{
+			utilities.doubleRandomCost();
+		}
 		double totalCost = utilities.getTotalCost();
 		clearScreen();
 		displayHeader(shift, 0, averageRating, eventName);

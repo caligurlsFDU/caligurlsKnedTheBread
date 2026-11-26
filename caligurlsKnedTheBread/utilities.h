@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #ifndef utilities_h
 #define utilities_h
 class utilities
@@ -15,6 +16,7 @@ public:
 	double getMiscellaneous() const;
 	double getTotalCost() const;
 	void displayBreakdown() const;
+	void doubleRandomCost();
 
 private:
 	double rent = 0.0;
@@ -24,6 +26,7 @@ private:
 	double internet = 0.0;
 	double groceries = 0.0;
 	double miscellaneous = 0.0;
+	std::string doubledCostName = "";
 };
 
 
